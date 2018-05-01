@@ -36,7 +36,7 @@ public class ItemCompraDAO extends AbstractJdbcDAO {
 			pst = connection.prepareStatement(sql.toString(), 
 					Statement.RETURN_GENERATED_KEYS);
 			
-			// qual é o 1??? ite_id` ou `ite_compra_id` ???
+			// qual é o 1??? ite_id` ou `ite_compra_id` ???	
 			pst.setString(1, itemCompra.get);
 			pst.setString(2,itemCompra.getLivro().getId());
 			pst.setString(3, itemCompra.getStatusDaCompra());
