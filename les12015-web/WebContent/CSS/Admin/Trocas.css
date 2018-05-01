@@ -1,0 +1,27 @@
+@charset "ISO-8859-1";
+
+#div-trocas{
+	margin-top: 0px;
+	margin-left: 10px;;
+	width: 1180px;
+}
+
+.trocas{
+	position: absolute;
+	font-size: 20px;
+	margin-left: 12.5%;
+    width: 75%;
+    margin-top: 35px;
+    margin-bottom: 150px;
+    
+}
+
+.titulo{
+	font-size: 25px;
+	color: #007bff;
+}
+
+
+.pagination li{
+	margin:  0px;
+}

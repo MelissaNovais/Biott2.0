@@ -1,0 +1,33 @@
+@charset "ISO-8859-1";
+
+
+#logo{
+	width:170px;
+	height:60px; 
+	position : absolute;
+	left:285px;
+	top : 8px;
+}
+
+#drop-livro{
+	margin-left: 355px;
+}
+
+
+#cabecalho ul li{
+	margin-left: 50px;
+}
+.bg-dark {
+    background-color: #343a40;
+}
+
+#backCabecalho{
+	height: 80px;
+	width: 100%;
+}
+
+.glyphicon{
+	margin-left: -20px;
+	color: #FFF;
+	margin-top: 10px;
+}

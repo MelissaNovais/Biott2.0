@@ -1,0 +1,33 @@
+@charset "ISO-8859-1";
+
+.panel{
+	margin-left: 16.5%;
+    width: 66.5%;
+    margin-top: 50px;
+    margin-bottom: 150px;
+}
+
+.panel-heading{
+	font-size: 25px;
+}
+
+.sublinhado{
+	width: 1110px;
+	height: 3px;
+	background-color:#007bff;
+	margin-left: 17%;
+	margin-bottom: 30px;
+}
+
+.titulo-tipo-tabela h2{
+	margin-top: -25px;
+	font-size: 25px;
+	color: #007bff;
+	margin-left: 17%;
+	text-transform: uppercase;
+}
+
+.tabela-resultados{
+	margin-left: -5px;
+	margin-bottom: 100px;
+}

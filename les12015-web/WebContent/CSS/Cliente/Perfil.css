@@ -1,0 +1,87 @@
+@charset "ISO-8859-1";
+
+.menu-perfil{
+	margin-top: 20px;
+	margin-bottom: 50px;
+	font-size: 18px;
+}
+
+#perfil .panel-heading {
+	background-color: #36C90F;
+}
+}
+#cupons .panel-heading {
+	background-color: #36C90F;
+}
+
+#historico .panel-heading {
+	background-color: #36C90F;
+}
+
+#mudar-senha .panel-heading {
+	background-color: #36C90F;
+}
+
+#configuracoes .panel-heading {
+	background-color: #36C90F;
+}
+#logout .panel-heading {
+	background-color: #36C90F;
+}	
+
+#cabecalho-panel-cartao{
+	background-color: #36C90F;
+	color:#FFF;
+}
+
+#cabecalho-panel-end{
+	background-color: #36C90F;
+	color:#FFF;
+}
+
+
+.panel-heading h3{
+	color: #FFF;
+	font-size: 18px;
+	background-color: #36C90F;
+}
+
+
+.panel-title label{
+	font-size: 18px;
+}
+.cadastro-endereco {
+ 	width:790px;
+    display: inline-block;
+    margin-left: 17px;
+    margin-top: 16px;
+    margin-bottom: 20px;
+    float;
+}
+.panel-heading{
+	
+	background-color: #36C90F;
+	
+}
+.cadastro-dados-cliente-cartao {
+   	width:790px;
+    display: inline-block;
+    margin-left: 17px;
+    margin-top: 16px;
+    margin-bottom: 20px;
+    float;
+}
+
+.titulo{
+	font-size: 18px;
+	color: #FFF;
+	height: 50px;
+}
+.img-cartao{
+	margin-top: -5px;
+	
+}
+#mini-cartao{
+	position: relative;
+	top: 5px;
+	right:

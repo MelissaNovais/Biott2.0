@@ -1,0 +1,57 @@
+@charset "ISO-8859-1";
+
+#logo{
+	width:50px;
+	height:50px; 
+	position : absolute;
+	left:290px;
+	top : 8px;
+}
+
+#barra-pesquisa{
+	height:45px; 
+	position:absolute;
+	left:580px;
+	width:600px;
+
+}
+
+#icone-perfil{
+	width:45px;
+	height:45px; 
+	position:absolute;
+	left:1215px;
+	top : 17px;
+	border-radius: 5px;
+	margin-right: 10px;
+
+}
+
+#carrinho{
+	height:	35px; 
+	position:absolute;
+	left:1275px;
+	top : 25px;
+	
+}
+
+#escrita-pesquisar {
+    font-size: 20px;
+    height:45px; 
+    width:550px; 
+    
+    
+}
+
+.btn-pesq{
+	 height:45px;
+	 width:50px; 
+}
+
+.bg-dark {
+    background-color: #343a40;
+}
+
+#backCabecalho{
+	height: 80px;
+}

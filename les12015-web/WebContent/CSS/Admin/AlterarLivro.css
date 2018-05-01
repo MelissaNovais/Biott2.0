@@ -1,0 +1,17 @@
+@charset "ISO-8859-1";
+
+.campo-alterar-livro{
+	margin-top: 30px;
+	font-size: 25px;
+    margin-left: 293px;
+    width: 320px;
+    display: inline-block;
+  
+}
+
+#btn-pesquisa-alterar{
+	
+    margin-left: 0px;
+    display: inline-block;
+    float;
+}

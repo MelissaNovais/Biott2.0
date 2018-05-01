@@ -1,0 +1,49 @@
+@charset "ISO-8859-1";
+
+h1, h2 {
+    font-family: "Open Sans Condensed", sans-serif;
+}
+
+
+header ul li a{
+	color : #F2FFFC;
+	font-family: "Open Sans Condensed", sans-serif;
+	text-decoration: none;
+	font-size: 20px;
+	text-shadow: none;
+	margin-right: 25px;
+
+	
+}
+
+.titulo-pag {
+    text-align: left;
+    background-color: #F5F2FF;
+    color: #000;
+    padding: 20px;
+    border-bottom: 2px solid #605E63;
+    font-size: 30px;
+    padding-left: 205px;
+    margin-bottom: 30px;
+}
+
+body{
+    font-family:  "Crimson Text", sans-serif;
+    background-color:  #FFF;
+    font-size: 110%;
+    line-height: 1.5;
+}
+
+footer{
+	font-size: 18px;
+}
+
+#rodape-pag  {
+    background-color: #212529;
+    font-size: 15 px;
+    color: #F2FFFC;
+    padding: 15px;
+    margin-top: 100px;
+    left: 0;
+    right: 0;   
+}

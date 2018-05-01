@@ -1,0 +1,23 @@
+@charset "ISO-8859-1";
+
+
+nav .breadcrumb{
+	margin-top: 25px;
+	background-color: #36C90F;
+	margin-bottom: 30px;
+	
+	
+}
+
+.breadcrumb a{
+	color: #FFF;
+}
+
+#primeira-linha-tab th{
+	border-top: 0px;
+	
+}
+
+#primeira-linha td{
+	border-top: 0px;
+}

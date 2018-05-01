@@ -1,0 +1,25 @@
+@charset "ISO-8859-1";
+
+
+#panel-cartao {
+    margin-left: 25%;
+    width: 50%;
+    display: inline-block;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    float;
+}
+
+#cabecalho-panel-cartao{
+	background-color: #36C90F;
+	font-size: 25px;
+	color: #FFF;
+	height: 50px;
+	
+
+}
+
+.img-cartao{
+	margin-top: -5px;
+	
+}
