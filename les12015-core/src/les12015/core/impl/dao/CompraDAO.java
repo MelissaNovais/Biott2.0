@@ -35,12 +35,12 @@ public class CompraDAO extends AbstractJdbcDAO {
 			pst = connection.prepareStatement(sql.toString(), 
 					Statement.RETURN_GENERATED_KEYS);
 			
-			pst.setString(1, compra.getCliente().getId());
-			pst.setString(2, compra.getEnd().getId());
-			pst.setString(3, compra.getCartao().getId());
-			pst.setString(4, compra.getCupom().getId());
-			pst.setString(5, compra.getValorTotal());
-			pst.setString(6, compra.getData());
+			pst.setInt(1, compra.getCliente().getId());
+			pst.setInt(2, compra.getEnd().getId());
+			pst.setInt(3, compra.getCartao().getId());
+			pst.setInt(4, compra.getCupom().getId());
+			pst.setDouble(5, compra.getValorTotal());
+			pst.setDate(6, compra.getData());
 			
 			pst.executeUpdate();	
 			ResultSet result = pst.getGeneratedKeys();

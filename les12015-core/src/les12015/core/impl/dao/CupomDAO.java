@@ -38,7 +38,7 @@ public class CupomDAO extends AbstractJdbcDAO {
 					Statement.RETURN_GENERATED_KEYS);
 			
 			pst.setString(1,cupom.getCodigo());
-			pst.setString(2, cupom.getValor());
+			pst.setDouble(2, cupom.getValor());
 			
 			pst.executeUpdate();	
 			ResultSet result = pst.getGeneratedKeys();
