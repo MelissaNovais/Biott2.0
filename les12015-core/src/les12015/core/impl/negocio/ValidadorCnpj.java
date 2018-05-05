@@ -17,7 +17,7 @@ public class ValidadorCnpj implements IStrategy {
 			}
 			
 		}else{
-			return "CNPJ não pode ser válidado, pois entidade não é um fornecedor!";
+			return "CNPJ não pode ser válidado, pois essa entidade não é um fornecedor!";
 		}
 		
 		
