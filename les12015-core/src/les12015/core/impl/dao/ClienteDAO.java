@@ -43,7 +43,7 @@ public class ClienteDAO extends AbstractJdbcDAO {
 			ResultSet result = pst.getGeneratedKeys();
 			result.next();	
 			int id= result.getInt(1);
-			cliente.setId(id);	
+			cliente.setId(id);
 			connection.commit();	
 			
 			LoginDAO daoLogin = new LoginDAO();
