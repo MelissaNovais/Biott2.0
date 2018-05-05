@@ -18,13 +18,13 @@ public class FornecedorDAO extends AbstractJdbcDAO{
 
 	@Override
 	public void salvar(EntidadeDominio entidade) throws SQLException {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void alterar(EntidadeDominio entidade) throws SQLException {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
