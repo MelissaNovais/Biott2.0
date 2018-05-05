@@ -64,16 +64,13 @@ public class ClienteDAO extends AbstractJdbcDAO {
 				e.printStackTrace();
 			}
 		}		
-
 	}
 	
 	
 	@Override
 	public void alterar(EntidadeDominio entidade) {
 		// TODO Auto-generated method stub
-		
-		
-		
+
 	}
 	
 	
@@ -124,10 +121,5 @@ public class ClienteDAO extends AbstractJdbcDAO {
 	
 		return null;
 	}
-
-	
-	
-
-	
 
 }

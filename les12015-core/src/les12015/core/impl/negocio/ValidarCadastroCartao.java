@@ -27,22 +27,8 @@ public class ValidarCadastroCartao implements IStrategy{
 				return "Este cartão já está cadastrado!";
 			
 			if(!cartoes.isEmpty())
-				return "Já existe um cartão com esses dadas cadastrados";
-			
-			if(car.getNumero() == null || car.getNumero().equals(""))
-				return "O número do cartão deve ser preenchido!";
-			
-			if(car.getCodSeguranca() == null || car.getCodSeguranca().equals(""))
-				return "O código de segurança deve ser preenchido";
-			
-			if(car.getCodSeguranca().length() > 4 || car.getCodSeguranca().length() < 3)
-				return "O código de segurança deve ter entre 3 e 4 dígitos";
-			
-			if(car.getTitular().equals("") || car.getTitular() == null)
-				return "O nome do titular deve ser preenchido!";
-			
-			if(car.getDataVenc().equals("") || car.getDataVenc() == null)
-				return "A data deve ser preenchida";
+				return "Já existe um cartão com esses dados cadastrados";
+
 			
 		} catch (Exception e) {
 			// TODO: handle exception

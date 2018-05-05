@@ -14,7 +14,7 @@ public class Compra extends EntidadeDominio{
 	private double subTotal;
 	private double valorTotal;
 	private Date data;
-	List<ItemCompra> carrinho = new ArrayList<ItemCompra>(); // Lista da classe item compra
+	private List<ItemCompra> carrinho = new ArrayList<ItemCompra>(); // Lista da classe item compra
 	
 	public Cliente getCliente() {
 		return cliente;
@@ -64,6 +64,12 @@ public class Compra extends EntidadeDominio{
 	}
 	public void setValorFrete(double valorFrete) {
 		this.valorFrete = valorFrete;
+	}
+	public List<ItemCompra> getCarrinho() {
+		return carrinho;
+	}
+	public void setCarrinho(List<ItemCompra> carrinho) {
+		this.carrinho = carrinho;
 	}
 	
 	
