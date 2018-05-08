@@ -7,9 +7,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Login - XINGLING</title>
-	<link rel="stylesheet" href="css/Reset.css">
-	<link rel="stylesheet" href="css/GeralSite.css">
-	<link rel="stylesheet" href="css/Login.css">
+	<link rel="stylesheet" href="CSS/Reset.css">
+	<link rel="stylesheet" href="CSS/GeralSite.css">
+	<link rel="stylesheet" href="CSS/Login.css">
+	<link rel="stylesheet" href="CSS/Cliente/CadastroCliente.css">
 	<link rel="icon" href = "Img/livro-icone.png">
 </head>
 <body>
@@ -22,7 +23,8 @@
 	
 	<c:if test="${not empty resultado}">
 	
-		<div class="alert alert-danger text-center" role="alert" id="alert-sucesso">
+		<div class="alert alert-danger text-center alert-dismissible" role="alert" id="alert-sucesso">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			${resultado.msg}
 	  		<br/>
 		</div>

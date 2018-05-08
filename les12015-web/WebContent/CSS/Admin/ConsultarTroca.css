@@ -1,0 +1,16 @@
+@charset "ISO-8859-1";
+
+.panel{
+	margin-left: 16.5%;
+    width: 66.5%;
+    margin-top: 50px;
+    margin-bottom: 150px;
+}
+
+.panel-heading{
+	font-size: 25px;
+}
+
+#livro-troca{
+	margin-top: 20px;
+}

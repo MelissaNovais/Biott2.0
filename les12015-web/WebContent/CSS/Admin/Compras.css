@@ -1,25 +1,22 @@
 @charset "ISO-8859-1";
 
 
-#panel-cartao {
-    margin-left: 25%;
-    width: 50%;
-    display: inline-block;
-    margin-top: 25px;
-    margin-bottom: 20px;
-    float;
+#div-compras{
+	margin-top: 0px;
+	margin-left: 30px;;
+	width: 1000px;
 }
 
-#cabecalho-panel-cartao{
-	background-color: #36C90F;
+.compras{
+	position: absolute;
+	font-size: 20px;
+	margin-left: 15%;
+    width: 69%;
+   	margin-top: 35px;
+    margin-bottom: 150px;
+    
+}
+
+.titulo{
 	font-size: 25px;
-	color: #FFF;
-	height: 50px;
-	
-
-}
-
-.img-cartao{
-	margin-top: -5px;
-	
 }

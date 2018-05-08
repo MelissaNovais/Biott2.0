@@ -2,11 +2,66 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		
+	</head>
+	<body>
+		<div class="panel cadastro-endereco panel-success border" >
+			<div class="panel-heading titulo" id="cabecalho-panel-end">Endereço</div>
+			<div class="panel-body ">
 
-</body>
-</html>
+				<div class="row">
+					<div class="col-md-3">
+						<div class="form-group">
+							<input id="txtCep" class="form-control" type="text" placeholder="CEP">	
+						</div>
+					</div>
+					<div class="col-md-7">
+						<div class="form-group">
+							<input id="txtLogradouro" class="form-control" type="text" placeholder="Rua">
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="form-group">
+							<input id="txtNumero" class="form-control" type="text" placeholder="Numero">
+						</div>
+					</div>	
+				</div>
+				
+				<div class="row">
+				
+					<div class="col-md-5">
+						<div class="form-group">
+							<input id="txtBairro" class="form-control" type="text" placeholder="Bairro">		
+							
+						</div>
+					</div>
+					
+					<div class="col-md-5">
+						<div class="form-group">
+							<input id="txtCidade" class="form-control" type="text" placeholder="Cidade">		
+						</div>
+					</div>	
+					<div class="col-md-2">
+						<div class="form-group">
+							<input id="txtEstado" class="form-control" type="text" placeholder="Estado">
+						</div>
+					</div>		
+				</div>
+				<div class="row">
+				
+					<div class="col-md-12">
+						<div class="form-group">
+							<input id="txtIdentificacaoEnd" class="form-control" type="text" 
+								placeholder="Identificação de Endereço (Exemplo: Casa da Mamãe)">
+						</div>
+					</div>
+				</div>
+				
+				
+			</div>	
+		</div>
+		<script src="./JS/apiCep.js"></script>
+	</body>
+	</html>

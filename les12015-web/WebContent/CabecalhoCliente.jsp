@@ -5,16 +5,16 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<link rel="stylesheet" href="css/Reset.css">
-		<link rel="stylesheet" href="css/Cliente/CabecalhoCliente.css">
-		<link rel="stylesheet" href="css/GeralSite.css">
+		<link rel="stylesheet" href="CSS/Reset.css">
+		<link rel="stylesheet" href="CSS/GeralSite.css">
+		<link rel="stylesheet" href="CSS/Cliente/Cabecalho.css">
+		
 	</head>
 	<body>
 		<header>
-	
-			<nav class="navbar navbar-expand-md navbar-dark bg-dark" id="backCabecalho">
+			<nav class="navbar navbar-expand-md navbar-dark bg-dark" id="backCabecalho" >
 			    <div class="container">
-			        <a href="Home.jsp">
+			        <a href="HomeCliente.jsp">
 			  			<img src="Img/logo-cliente.jpg" alt="Logo Xingling" id="logo">
 					</a>
 			
@@ -46,3 +46,5 @@
 		</header>
 	</body>
 </html>
+
+

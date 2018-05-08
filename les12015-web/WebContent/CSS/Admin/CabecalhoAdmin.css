@@ -13,7 +13,6 @@
 	margin-left: 355px;
 }
 
-
 #cabecalho ul li{
 	margin-left: 50px;
 }
@@ -24,6 +23,10 @@
 #backCabecalho{
 	height: 80px;
 	width: 100%;
+}
+
+#drop-livro a{
+	font-size: 18px;
 }
 
 .glyphicon{

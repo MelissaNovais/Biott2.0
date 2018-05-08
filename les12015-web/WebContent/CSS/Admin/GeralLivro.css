@@ -1,0 +1,26 @@
+@charset "ISO-8859-1";
+
+.campos-cadastro-livro {
+    font-size: 25px;
+    margin-left: 280px;
+    width: 67%;
+    display: inline-block;
+    margin-top: 25px;
+    margin-bottom: 100px;
+    float;
+}
+
+.btn-salvar{
+	position: absolute;
+   	padding-left:30px;
+   	padding-right:30px;
+   	padding-bottom: 10px;
+	padding-top: 10px;
+    text-align: center;
+    top: 950px;
+    left: 200px;
+    background-color: #47F073;
+    border-radius: 10px;
+    font-size: 18px;
+    
+}

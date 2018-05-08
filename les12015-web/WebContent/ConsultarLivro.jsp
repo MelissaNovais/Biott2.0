@@ -13,48 +13,36 @@
 		
 		<link rel="stylesheet" href="CSS/Reset.css">
 		<link rel="stylesheet" href="CSS/GeralSite.css">
-		<link rel="stylesheet" href="CSS/Admin/AlterarLivro.css">
 		<link rel="stylesheet" href="CSS/Admin/GeralLivro.css">
+		<link rel="stylesheet" href="CSS/Admin/ConsultarLivro.css">
 		<link rel="icon" href = "Img/livro-icone.png">
 		
-		<title>Alterar Livro - XINGLING</title>
+		<title>Consultar Livro - XINGLING</title>
 	</head>
 	<body>
 		<c:import url="CabecalhoAdmin.jsp"/>
 		
-		<div  class="campo-alterar-livro"  >
-        <form action="SalvarLivro" method="GET">
-            <div class="form-group ">
-             	<div class="row">
-					<div class="col-md-8">
-						<div class="form-group">
-							<input id="txtId" class="form-control" type="text" placeholder="Id"/>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="form-group">
-							<button id = "btn-pesquisa-alterar" type="submit" class="btn  btn-primary">Pesquisar</button>
-						</div>
-					</div>
-            	</div>
-            </div>
-        </form>
-    </div>
+		<div class="panel panel-primary campos-cadastro-livro">
+			<div class="panel-heading panel-primary">Consultar Livro</div>
+			<div class="panel-body">
+	        	<form action="PesquisarLivro" method="GET">
+		    		<c:import url="CamposLivro.jsp" />
+		            <button type="submit" id="operacao" name="operacao" value="VISUALIZAR"
+		             class="btn btn-primary">Pesquisar</button>
+	       		</form>
+			</div>
+		</div>
+	
+		<div class= "titulo-tipo-tabela">
+			<h2>Resultados</h2>
+			<div class="sublinhado"></div>
+		</div>
 
-    <!-- ESSA PARTE SÓ VAI APARECER DPS QUE ELE APERTAR O BOTÃO E O LIVRO EXISTIR  -->
-    <div class="panel panel-primary campos-cadastro-livro">
-		<div class="panel-heading ">Alterar Livro</div>
-		<div class="panel-body">
-        <form action="AlterarLivro" method="GET">
-
-			<c:import url="CamposLivro.jsp" />
-			
-			<button type="submit" class="btn btn-primary">Salvar</button>
-        </form>
-        </div>
-    </div>
-    
-	<c:import url= "RodapeAdmin.jsp"/>
+		<div class="panel-resultado-pesquisa">
+			<c:import url="TabelaComUmLivro.jsp"/>	
+		</div>
+	
+		<c:import url= "RodapeAdmin.jsp"/>
 	
 	
 	</body>
