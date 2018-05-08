@@ -8,7 +8,7 @@ public class EntidadeDominio implements IEntidade{
 	private Integer id;
 	private Date dtCadastro;
 	
-	public Integer getId() {
+	public  Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
