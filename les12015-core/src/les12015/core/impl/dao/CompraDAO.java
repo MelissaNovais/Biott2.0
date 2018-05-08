@@ -76,30 +76,6 @@ public class CompraDAO extends AbstractJdbcDAO {
 
 	@Override
 	public List<EntidadeDominio> consultar(EntidadeDominio entidade) throws SQLException {
-		PreparedStatement pst = null;
-		Compra compra = (Compra) entidade;
-		List<EntidadeDominio> compras = new ArrayList<EntidadeDominio>();
-		String sql = null;
-		
-		//Juntando as tabelas
-		sql= "";
-		
-		try {
-			openConnection();
-			pst = connection.prepareStatement(sql);
-			ResultSet result = pst.executeQuery();
-			while(result.next()) {
-				compra = new Compra();
-				
-				//Pegando os atributos de cliente
-				compra.set(result.getString("com_"));
-				
-				compras.add(compra);
-			}
-			return compras;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 		
 		
 		return null;

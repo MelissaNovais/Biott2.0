@@ -1,6 +1,5 @@
 package les12015.core.impl.dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,14 +7,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import les12015.dominio.Compra;
 import les12015.dominio.Cupom;
 import les12015.dominio.EntidadeDominio;
 
 public class CupomDAO extends AbstractJdbcDAO {
 
 	public CupomDAO() {
-		super("", "");
+		super("cupom", "cup_id");
 		// TODO Auto-generated constructor stub
 	}
 
@@ -31,14 +29,15 @@ public class CupomDAO extends AbstractJdbcDAO {
 			connection.setAutoCommit(false);
 			StringBuilder sql = new StringBuilder();
 			
-			sql.append("INSERT INTO cupom(cup_codigo, cup_valor)");
-			sql.append("VALUES (?,?)");
+			sql.append("INSERT INTO cupom(cup_codigo, cup_valor, cup_cli_id)");
+			sql.append("VALUES (?,?,?)");
 			
 			pst = connection.prepareStatement(sql.toString(), 
 					Statement.RETURN_GENERATED_KEYS);
 			
 			pst.setString(1,cupom.getCodigo());
 			pst.setDouble(2, cupom.getValor());
+			pst.setInt(3, cupom.getCliente().getId());
 			
 			pst.executeUpdate();	
 			ResultSet result = pst.getGeneratedKeys();
@@ -74,26 +73,36 @@ public class CupomDAO extends AbstractJdbcDAO {
 	public List<EntidadeDominio> consultar(EntidadeDominio entidade) throws SQLException {
 		
 		PreparedStatement pst = null;
-		Cupom cupom= (Cupom) entidade;
-		List<EntidadeDominio> compras = new ArrayList<EntidadeDominio>();
+		Cupom cupom = (Cupom) entidade;
 		String sql = null;
 		
 		//Juntando as tabelas
-		sql= "";
+		sql= "SELECT * FROM CUPOM WHERE 1 = 1";
+		
+		if(cupom.getId() != null) {
+			sql = sql + "AND cup_id = " + cupom.getId() + "";
+		}
+		if (cupom.getCodigo() != null) {
+			sql = sql + " AND cup_codigo = " + cupom.getCodigo() + "";
+		}
+		if(cupom.getCliente() != null) {
+			sql = sql + " AND cup_cli_id = " + cupom.getCliente().getId() + "";
+		}
 		
 		try {
 			openConnection();
 			pst = connection.prepareStatement(sql);
-			ResultSet result = pst.executeQuery();
-			while(result.next()) {
-				cupom = new Cupom();
-				
-				//Pegando os atributos de cliente
-				cupom.set(result.getString("cup_"));
-				
-				compras.add(cupom);
+			ResultSet rs = pst.executeQuery();
+			List<EntidadeDominio> cupons = new ArrayList<EntidadeDominio>();
+			while (rs.next()) {
+				Cupom cup = new Cupom();
+				cup.setId(rs.getInt("cup_id"));
+				cup.setCodigo(rs.getString("cup_codigo"));
+				cup.setValor(rs.getDouble("cup_valor"));
+				cup.setId(rs.getInt("cup_cli_id"));
+				cupons.add(cup);
 			}
-			return compras;
+			return cupons;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
