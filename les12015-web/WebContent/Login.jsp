@@ -16,6 +16,18 @@
 
         <c:import url= "CabecalhoCliente.jsp"/>
 		
+		<%	
+			Resultado resultado = (Resultado) request.getAttribute("resultado");
+		%>
+		
+		<c:if test="${not empty resultado}">
+			<div class="alert alert-danger text-center alert-dismissible" role="alert" id="alert-sucesso">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				${resultado.msg}
+		  		<br/>
+			</div>
+		</c:if>
+	
 		<div>
 			<div class="container container-login" >
 			    <div class="info">
@@ -29,12 +41,11 @@
 			    <form class="login-form" action ="Logar" method= "post">
 			      	<input type="text" placeholder="Email"  id = "txtEmail" v-model="email"/>
 			      	<input type="password" placeholder="Senha" id = "txtSenha" v-model="senha"/>
-			      	<button name="operacao" id="operacao" value = "CONSULTAR">  Login </button> 
-			       <!--	<button v-on:click.prevent @click="register">login</button>--> <!-- click.prevent tira o efeito do botão, @click faz executar a função -->
-			     	<p class="message">Não tem uma conta?
+			      	<button name="operacao" id="operacao" value = "CONSULTAR"> Login </button> 
+			      </form>
+			       	<p class="message">Não tem uma conta?
 			        	<a href="CadastroInicial.jsp">Crie uma conta</a>
 			      	</p>
-			    </form>
 			</div>
 			
 		</div>

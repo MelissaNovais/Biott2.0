@@ -29,10 +29,30 @@ public class ClienteViewHelper implements IViewHelper {
 	public EntidadeDominio getEntidade(HttpServletRequest request) {
 		String operacao = request.getParameter("operacao");
 		Cliente cliente = new Cliente(); 
+		cliente.setTipoUsuario("cliente");
 	
+		if(operacao.equals("CONSULTAR")) {
+			String nome = request.getParameter("txtNome");
+			String cpf = request.getParameter("txtCpf");
+			String email = request.getParameter("txtEmail");
+			//Verificando o resto
+			if (nome != null && !nome.trim().equals("")) {
+                cliente.setNome(nome);
+            }
+			if (cpf != null && !cpf.trim().equals("")) {
+                cliente.setCpf(cpf);
+            }
+			if (email != null && !email.trim().equals("")) {
+                cliente.setEmail(email);
+            }
+			String id = request.getParameter("txtId");
+			if (id != null && !id.trim().equals("")) {
+                cliente.setId(Integer.parseInt(id));
+			}
+		}
 	
-		if(!operacao.equals("EXCLUIR")) {
-			if(operacao.equals("SALVAR") || operacao.equals("CONSULTAR")){
+		if(operacao.equals("SALVAR") || operacao.equals("ALTERAR")) {
+			if(operacao.equals("SALVAR")){
 				//Pegando os atributos dos inputs
 				String nome = request.getParameter("txtNome");
 				String cpf = request.getParameter("txtCpf");
@@ -53,8 +73,7 @@ public class ClienteViewHelper implements IViewHelper {
 				cliente.setCpf(cpf);
 				cliente.setNome(nome);
 			}
-			//Verficar campos espcificos da operação salvar e alterar
-			if(!operacao.equals("CONSULTAR") ) {
+		
 				String senha = request.getParameter("txtSenha");
 				String confSenha = request.getParameter("txtConfSenha");
 				if (senha != null && !senha.trim().equals("")) {
@@ -65,15 +84,15 @@ public class ClienteViewHelper implements IViewHelper {
 				}
 				cliente.setSenha(senha);
 				cliente.setConfSenha(confSenha);
-			}
+			
 			//Verficar campos especificos da operação Consultar ou Alterar
-			if(!operacao.equals("SALVAR") ) {
-				String id = request.getParameter("txtCliId");
+			if(operacao.equals("ALTERAR") ) {
+				String id = request.getParameter("txtId");
 				if (id != null && !id.trim().equals("")) {
 	                cliente.setId(Integer.parseInt(id));
 				}
 			}
-			if(!operacao.equals("ALTERAR") ) {
+			if(operacao.equals("SALVAR") ) {
 				cliente.getCartoes().add(new Cartao());
 				cliente.getEnderecos().add(new Endereco());
 			}
@@ -81,9 +100,9 @@ public class ClienteViewHelper implements IViewHelper {
 		
 		if(operacao.equals("EXCLUIR")){
 			//String id = request.getParameter("txtCliId");
-			String id = "1236";
-			cliente.setId(Integer.parseInt(id));
+			cliente = (Cliente) request.getAttribute("cliente");
 		}
+		
 		return cliente;
 	}
 
@@ -103,25 +122,27 @@ public class ClienteViewHelper implements IViewHelper {
 		String operacao = request.getParameter("operacao");
 		
 		
-		System.out.println("Resultado get Msg:" + resultado.getMsg());
-		
 		if(resultado.getMsg() == null){
 			if(operacao.equals("SALVAR")){
-				resultado.setMsg("Você foi Cadastrado com Sucesso!");
 				request.getSession().setAttribute("resultado", resultado);
-				reqD = request.getRequestDispatcher("CadastroCliente.jsp");  
+				request.getSession().setAttribute("cliente", resultado.getEntidades().get(0));
+				reqD = request.getRequestDispatcher("HomeCliente.jsp");  
 			}
 			if(operacao.equals("EXCLUIR")){
+				reqD = request.getRequestDispatcher("Login.jsp"); 
 				resultado.setMsg("Sua Conta foi Excluida :( ");
 			}
+			else if (operacao.equals("CONSULTAR")) {
+				request.getSession().setAttribute("clientes", resultado.getEntidades());
+				reqD = request.getRequestDispatcher("ConsultarCliente.jsp");  	
+			}
 		}
-		if(resultado.getMsg() != null){
+		else if (resultado.getMsg() != null){
 			if(operacao.equals("SALVAR")){
 				request.getSession().setAttribute("resultado", resultado);
 				reqD = request.getRequestDispatcher("CadastroCliente.jsp");  	
 			}
 		}
-		System.out.println(resultado.getMsg());
 		reqD.forward(request,response); 
 		
 	}

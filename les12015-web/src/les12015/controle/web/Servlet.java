@@ -16,8 +16,11 @@ import les12015.controle.web.command.impl.ExcluirCommand;
 import les12015.controle.web.command.impl.SalvarCommand;
 import les12015.controle.web.command.impl.VisualizarCommand;
 import les12015.controle.web.vh.IViewHelper;
+import les12015.controle.web.vh.impl.CartaoViewHelper;
 import les12015.controle.web.vh.impl.ClienteViewHelper;
-import les12015.controle.web.vh.impl.ProdutoViewHelper;
+import les12015.controle.web.vh.impl.EnderecoViewHelper;
+import les12015.controle.web.vh.impl.LivroViewHelper;
+import les12015.controle.web.vh.impl.LoginViewHelper;
 import les12015.core.aplicacao.Resultado;
 import les12015.dominio.EntidadeDominio;
 
@@ -57,8 +60,27 @@ public class Servlet extends HttpServlet {
     	 * está configurado no web.xml e sendo utilizada no action do html
     	 */
     	
+    	vhs.put("/les12015-web/SalvarLivro", new LivroViewHelper());
+    	vhs.put("/les12015-web/ExcluirLivro", new LivroViewHelper());
+    	vhs.put("/les12015-web/AlterarLivro", new LivroViewHelper());
+    	vhs.put("/les12015-web/ConsultarLivro", new LivroViewHelper());
+    	
     	vhs.put("/les12015-web/SalvarCliente", new ClienteViewHelper());
-    	vhs.put("/les12015-web/SalvarProduto", new ProdutoViewHelper());
+    	vhs.put("/les12015-web/ExcluirCliente", new ClienteViewHelper());
+    	vhs.put("/les12015-web/AlterarCliente", new ClienteViewHelper());
+    	vhs.put("/les12015-web/ConsultarCliente", new ClienteViewHelper());
+    	
+    	vhs.put("/les12015-web/SalvarCartao", new CartaoViewHelper());
+    	vhs.put("/les12015-web/ExcluirCartao", new CartaoViewHelper());
+    	vhs.put("/les12015-web/AlterarCartao", new CartaoViewHelper());
+    	vhs.put("/les12015-web/ConsultarCartao", new CartaoViewHelper());
+    	
+    	vhs.put("/les12015-web/SalvarEndereco", new EnderecoViewHelper());
+    	vhs.put("/les12015-web/ExcluirEndereco", new EnderecoViewHelper());
+    	vhs.put("/les12015-web/AlterarEndereco", new EnderecoViewHelper());
+    	vhs.put("/les12015-web/ConsultarEndereco", new EnderecoViewHelper());
+ 
+    	vhs.put("/les12015-web/Logar", new LoginViewHelper());
     	
     	
     }
@@ -93,7 +115,6 @@ public class Servlet extends HttpServlet {
 		//Obtêm a uri que invocou esta servlet (O que foi definido no methdo do form html)
 		String uri = request.getRequestURI();
 		
-		System.out.println("Uri: " + uri);//********************************************************************************
 		
 		//Obtêm a operação executada
 		String operacao = request.getParameter("operacao");
@@ -112,6 +133,7 @@ public class Servlet extends HttpServlet {
 		 * o retorno é uma instância da classe resultado que pode conter mensagens derro 
 		 * ou entidades de retorno
 		 */
+		System.out.println("Servlet... Uri: " + uri + "   View: " + vh + "   Entidade: " + entidade.getClass().getName());
 		Resultado resultado = command.execute(entidade);
 		
 		/*

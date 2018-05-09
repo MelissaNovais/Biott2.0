@@ -22,13 +22,18 @@
 	<c:import url= "CabecalhoCliente.jsp"/>
 	
 	<c:if test="${not empty resultado}">
-	
+		<!-- Se ele fez o cadastro com sucesso é redirecionado pra home //Comentei caso o eclispse q nao esteja compilalndo e na real eu precise disso, pq o eclipse ta uma negação
+		<c:if test = "${resultado.msg == 'sucesso'}">
+			<c:redirect url = "HomeCliente.jsp"/>
+		</c:if>
+		<!-- Avisa o q impediu o cadastro -->
 		<div class="alert alert-danger text-center alert-dismissible" role="alert" id="alert-sucesso">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			${resultado.msg}
 	  		<br/>
 		</div>
 	</c:if>
+	 
 	<div>
 		<div class="container container-login">
 	    	<div class="info">

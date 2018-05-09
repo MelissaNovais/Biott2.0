@@ -16,6 +16,23 @@
 
         <c:import url= "CabecalhoCliente.jsp"/>
 		
+		<%	
+			Cliente cliente = (Cliente) request.getAttribute("cliente");
+			List<Livro> livros = new ArrayList<Livro>();
+			livros = (ArrayList<Livro>) request.getAttribute("livros");
+		%>
+		
+			
+		<c:if test="${not empty cliente}">
+			<div class="alert alert-success text-center alert-dismissible" role="alert" id="alert-sucesso">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					Bem Vindo ao Xingling ${cliente.nome} !! 
+					Aproveite nossas Ofertas
+ 		  		<br/>
+			</div>
+		</c:if>
+		
+		
 		<div>
 			<div class="container">
 	  			<div class="row">
@@ -367,4 +384,4 @@
         <c:import url= "RodapeCliente.jsp"/>
 
     </body>
-</html>html>
+</html>

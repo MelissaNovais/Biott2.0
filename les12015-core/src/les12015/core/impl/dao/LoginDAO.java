@@ -28,9 +28,17 @@ public class LoginDAO extends AbstractJdbcDAO {
 		try {
 			connection.setAutoCommit(false);
 			StringBuilder sql = new StringBuilder();
+			
+			if(login.getTipoUsuario().equals("cliente")) {
+				sql.append("INSERT INTO login(log_email, log_senha, log_cli_id)");
+				sql.append(" VALUES (?,?,?)");
+			}
+			else if(login.getTipoUsuario().equals("admin")) {
+				sql.append("INSERT INTO login(log_email, log_senha, log_adm_id)");
+				sql.append(" VALUES (?,?,?)");
+			}
 
-			sql.append("INSERT INTO login(log_email, log_senha, log_cli_id)");
-			sql.append(" VALUES (?,?,?)");
+			
 
 			pst = connection.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 
@@ -84,10 +92,8 @@ public class LoginDAO extends AbstractJdbcDAO {
 		
 		try {
 			connection.setAutoCommit(false);			
-					
 			String sql = null;
 			sql = "UPDATE login SET ";
-					
 			
 			if(login.getSenha() != null) {
 				 sql = sql + "log_senha = ";
@@ -96,15 +102,12 @@ public class LoginDAO extends AbstractJdbcDAO {
 					BigInteger hash = new BigInteger(1, md.digest( login.getSenha().getBytes()));
 			        login.setSenha (hash.toString());
 			        sql = sql + "'" + login.getSenha()  + "'";
-			          
 				} catch (NoSuchAlgorithmException e) {
 					
 					e.printStackTrace();
 				}	
-				
 			}
-	 
-			
+
 			pst = connection.prepareStatement(sql);
 
 			sql = sql + "WHERE log_cli_id=" + login.getId()	+ " AND cli_status = 1";		
@@ -141,12 +144,10 @@ public class LoginDAO extends AbstractJdbcDAO {
 		sql = "SELECT * FROM login WHERE log_email = '" + login.getEmail() + "' AND log_senha = '";
 		
 			try {
-				MessageDigest md = MessageDigest.getInstance("MD5");
-				String senha = login.getSenha();
-				BigInteger hash = new BigInteger(1, md.digest( senha.getBytes()));
-				senha =  (hash.toString());
-				login.setSenha(senha);
-	            sql = sql + "'" + login.getSenha()  + "'";
+				MessageDigest md  = MessageDigest.getInstance("MD5");
+				BigInteger hash = new BigInteger(1, md.digest( login.getSenha().getBytes()));
+				 login.setSenha (hash.toString());
+			     sql = sql + "'" + login.getSenha()  + "'";
 	          
 			} catch (NoSuchAlgorithmException e) {
 				// TODO Auto-generated catch block
@@ -161,10 +162,24 @@ public class LoginDAO extends AbstractJdbcDAO {
 			ResultSet result = pst.executeQuery();
 			while (result.next()) {
 				login = new Login();
+				
 				// Pegando os atributos login
 				login.setEmail(result.getString("log_email"));
 				login.setId(result.getInt("log_id"));
 				login.setSenha(result.getString("log_senha"));
+				
+				int idCliente = result.getInt("log_cli_id");
+				int idAdmin = result.getInt("log_adm_id");
+				
+				if (idCliente > 0) {
+					login.setTipoUsuario("cliente");
+					login.setIdUsuario(idCliente);
+				}
+				else if (idAdmin > 0) {
+					login.setTipoUsuario("admin");
+					login.setIdUsuario(idAdmin);
+				}
+				
 				logins.add(login);
 			}
 			return logins;

@@ -9,7 +9,7 @@ public class Conexao {
 
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
 		String driver = "com.mysql.cj.jdbc.Driver";
-		String url = "jdbc:mysql://localhost/biott";
+		String url = "jdbc:mysql://localhost/biott?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 		
 		String user = "root";	
 		String password = "root";

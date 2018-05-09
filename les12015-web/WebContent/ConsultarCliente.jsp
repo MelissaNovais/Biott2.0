@@ -19,77 +19,43 @@
 		<title>Consultar Cliente - XINGLING</title>
 	</head>
 	<body>
+	
+		<%	
+			List<Cliente> clientes = new ArrayList<Cliente>();
+			clientes = (ArrayList<Cliente>) request.getAttribute("clientes");
+		%>
+		
+		
 		<c:import url="CabecalhoAdmin.jsp"/>
 		
 		<form action="ConsultarCliente" method="post">
 			<div class="panel panel-info ">
 				<div class="panel-heading panel-info">Pesquisar Cliente</div>
 				<div class="panel-body">
-				<div class="row">
-					<div class="col-md-2">
-						<div class="form-group">
-							<input  id = "txtIdCliente" class="form-control" type="text" placeholder="Id Cliente">
+					<div class="row">
+						<div class="col-md-2">
+							<div class="form-group">
+								<input  id = "txtId" name = "txtId" class="form-control" type="text" placeholder="Id Cliente">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<input  id = "txtNome" name = "txtNome" class="form-control" type="text" placeholder="Nome">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<input  id = "txtEmail" name = "txtEmail" class="form-control" type="text" placeholder="E-mail">
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="form-group">
+								<input  id = "txtCpf"  name = "txtCpf" class="form-control" type="text" placeholder="CPF">
+							</div>
 						</div>
 					</div>
-					<div class="col-md-4">
-						<div class="form-group">
-							<input  id = "txtNomeCliente" class="form-control" type="text" placeholder="Nome">
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="form-group">
-							<input  id = "txtNomeEmail" class="form-control" type="text" placeholder="E-mail">
-						</div>
-					</div>
-					<div class="col-md-2">
-						<div class="form-group">
-							<input  id = "txtCpf" class="form-control" type="text" placeholder="CPF">
-						</div>
-					</div>
-					
-				</div>
-				<div class="row">
-					<div class="col-md-2">
-						<div class="form-group">
-							<input  id = "txtCep" class="form-control" type="text" placeholder="Cep">
-						</div>
-					</div>
-					<div class="col-md-8">
-						<div class="form-group">
-							<input  id = "txtRua" class="form-control" type="text" placeholder="Rua">
-						</div>
-					</div>
-					<div class="col-md-2">
-						<div class="form-group">
-							<input  id = "txtNumero" class="form-control" type="text" placeholder="Numero">
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<div class="form-group">
-							<input  id = "txtBairro" class="form-control" type="text" placeholder="Bairro">
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="form-group">
-							<input  id = "txtCidade" class="form-control" type="text" placeholder="Cidade">
-						</div>
-					</div>
-					<div class="col-md-2">
-						<div class="form-group">
-							<input  id = "txtEstado" class="form-control" type="text" placeholder="Estado">
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="form-group">
-							<input  id = "txtIdentificacaoEnd" class="form-control" type="text" placeholder="Identificacao do Endereço (Ex: Casa da Sogrinha)">
-						</div>
-					</div>
-				</div>
-					<button id= "operacao" type="submit"  name="operacao" value="SALVAR" 
+
+					<button id= "operacao" type="submit"  name="operacao" value="CONSULTAR" 
 						class="btn btn-primary">Pesquisar</button>
 				</div>
 			</div>
@@ -101,42 +67,34 @@
 		</div>
 		
 		<div class="container mb-4 " >
-		<div class="row">
-			<div class="col-12">
-				<div class="table-responsive tabela-resultados">
-                	<table class="table table-striped">
-                    	<thead>
-                        	<tr>
-                          
-                                <th scope="col">Id do cliente</th>
-                                <th scope="col" > Confiança</th>
-                                <th scope="col">Nome</th>
-                                <th scope="col"  class="text-center" >Data de Cadastro</th>
-                                <th scope="col"  class="text-center">Total já gasto no Site</th>
-                               
-                            </tr>
-                     	</thead>
-                        <tbody>
-                                <!-- FOR DE Cleintes ENCONTRADOS AQUI -->
-                               <tr>
-                                    <td >6541</td>
-                                    <td  ><i class="fa fa-star" style = "color: #FFEC0B;"></i>
-				                        <i class="fa fa-star" style = "color: #FFEC0B;" ></i>
-				                        <i class="fa fa-star" style = "color: #FFEC0B;"></i>
-				                        <i class="fa fa-star" style = "color: #FFEC0B;" ></i>		                
-				                      	<i class="fa fa-star"  ></i>
-				                   	</td>
-		                             <td >Maria da Silva</td>
-		                             <td  class="text-center" >25/03/2015</td>
-		                             <td  class="text-center">R$ 320,00</td>
-                                    
-                                </tr>
-                                <!-- ATÉ AQUI -->
-                                
-                      		</tbody>
-                   		</table>
-               		</div>
-           		</div>
+			<div class="row">
+				<div class="col-12">
+					<div class="table-responsive tabela-resultados">
+	                	<table class="table table-striped table-hover">
+	                    	<thead>
+	                        	<tr>
+	                          		<th scope="col">Id do cliente</th>
+	                                <th scope="col" > Nome</th>
+	                                <th scope="col">E-mail</th>
+	                                <th scope="col">CPF</th>
+	                                <th scope="col"  class="text-center" >Data de Cadastro</th>
+	                         	</tr>
+	                     	</thead>
+	                        <tbody>
+		                        <c:forEach var="c" items="${clientes}">
+		                        	<tr>
+		                                    <td> ${c.id} </td>
+		                                    <td> ${c.nome} </td>
+		                                    <td> ${c.email} </td>
+		                                    <td> ${c.cpf} </td>
+				                             <td  class="text-center" >25/03/2015</td>
+		                                </tr>
+		                        </c:forEach>
+	                                
+	                      	</tbody>
+	                   	</table>
+	               	</div>
+	           	</div>
 			</div>
 		</div>
 		

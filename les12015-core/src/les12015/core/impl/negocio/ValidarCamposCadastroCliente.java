@@ -19,16 +19,16 @@ public class ValidarCamposCadastroCliente implements IStrategy {
 		// pattern da senha com numeros, letras minusculas, minusculas, e caracteres especiais
 		String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
 		try {
-			if (cli.getNome().equals("") || cli.getNome() == null)
+			if (cli.getNome().trim().equals("") || cli.getNome() == null)
 				return "Nome precisa ser preenchido!";
 			
-			if (cli.getCpf().equals("") || cli.getCpf() == null)
+			if (cli.getCpf().trim().equals("") || cli.getCpf() == null)
 				return "CPF precisa ser preenchido!";
 			
-			if (cli.getEmail().equals("") || cli.getEmail() == null)
+			if (cli.getEmail().trim().equals("") || cli.getEmail() == null)
 				return "Email precisa ser preenchido!";
 
-			if (cli.getSenha().equals("") || cli.getSenha() == null)
+			if (cli.getSenha().trim().equals("") || cli.getSenha() == null)
 				return "Senha precisa ser preenchida!";
 			
 			if(!cli.getSenha().matches(pattern))

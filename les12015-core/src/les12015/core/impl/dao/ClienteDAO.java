@@ -27,17 +27,17 @@ public class ClienteDAO extends AbstractJdbcDAO {
 			
 			StringBuilder sql = new StringBuilder();
 			
-			sql.append("INSERT INTO cliente (cli_email, cli_nome, cli_cpf)");
-			sql.append(" VALUES (?,?,?)");	
+			sql.append("INSERT INTO cliente (cli_nome, cli_cpf)");
+			sql.append(" VALUES (?,?)");	
 			
 			//Retornar o ID gerado automaticamente
 			pst = connection.prepareStatement(sql.toString(), 
 					Statement.RETURN_GENERATED_KEYS);
 
 			
-			pst.setString(1,cliente.getEmail());
-			pst.setString(2, cliente.getNome());
-			pst.setString(3, cliente.getCpf());
+			
+			pst.setString(1, cliente.getNome());
+			pst.setString(2, cliente.getCpf());
 
 			pst.executeUpdate();	
 			ResultSet result = pst.getGeneratedKeys();
@@ -89,11 +89,12 @@ public class ClienteDAO extends AbstractJdbcDAO {
 			sql = sql + "WHERE cli_id = " + cliente.getId() + "" ;
 		}else {
 			sql = sql + "WHERE 1 = 1";
-			if(cliente.getNome() != null)
+			
+			if(cliente.getNome() != null && !cliente.getNome().trim().equals(""))
 				sql = sql + " AND cli_nome like '%" + cliente.getNome() + "%'";
-			if(cliente.getCpf() != null)
+			if(cliente.getCpf() != null && !cliente.getCpf().trim().equals(""))
 				sql = sql + " AND cli_cpf like '" + cliente.getCpf() + "'";
-			if(cliente.getEmail() != null)
+			if(cliente.getEmail() != null && !cliente.getEmail().trim().equals(""))
 				sql = sql + " AND log_email like '" + cliente.getEmail() + "'";
 		}
 			
@@ -114,6 +115,7 @@ public class ClienteDAO extends AbstractJdbcDAO {
 				
 				clientes.add(cliente);
 			}
+			
 			return clientes;
 		} catch (SQLException e) {
 			e.printStackTrace();

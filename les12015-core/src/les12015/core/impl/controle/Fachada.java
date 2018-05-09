@@ -85,10 +85,10 @@ public class Fachada implements IFachada {
 		List<IStrategy> rnsConsultarCliente = new ArrayList<IStrategy>();//Nao fizemos Ainda
 		
 		List<IStrategy> rnsSalvarLogin = new ArrayList<IStrategy>();
-		rnsSalvarLogin.add(validarLogin);
 		List<IStrategy> rnsAlterarLogin = new ArrayList<IStrategy>();
 		List<IStrategy> rnsExcluirLogin = new ArrayList<IStrategy>();
 		List<IStrategy> rnsConsultarLogin = new ArrayList<IStrategy>();
+		rnsConsultarLogin.add(validarLogin);
 
 		List<IStrategy> rnsSalvarCartao = new ArrayList<IStrategy>();
 		rnsSalvarCartao.add(validarCartao);
@@ -160,6 +160,8 @@ public class Fachada implements IFachada {
 				List<EntidadeDominio> entidades = new ArrayList<EntidadeDominio>();
 				entidades.add(entidade);
 				resultado.setEntidades(entidades);
+				Cliente cli = (Cliente) resultado.getEntidades().get(0);
+				System.out.println(cli.getNome());
 			} catch (SQLException e) {
 				e.printStackTrace();
 				resultado.setMsg("Não foi possível realizar o registro!");
@@ -238,7 +240,7 @@ public class Fachada implements IFachada {
 		resultado = new Resultado();
 		String nmClasse = entidade.getClass().getName();	
 		
-		String msg = executarRegras(entidade, "EXCLUIR");
+		String msg = executarRegras(entidade, "CONSULTAR");
 		
 		
 		if(msg == null){

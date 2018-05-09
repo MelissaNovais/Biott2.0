@@ -8,8 +8,8 @@ public class Cliente extends Login {
 
 	private String nome;
 	private String cpf;
-	private List<EntidadeDominio> cartoes = new ArrayList<EntidadeDominio>();
-	private List<EntidadeDominio> enderecos = new ArrayList<EntidadeDominio>();
+	private List<Cartao> cartoes = new ArrayList<Cartao>();
+	private List<Endereco> enderecos = new ArrayList<Endereco>();
 	public String getNome() {
 		return nome;
 	}
@@ -22,16 +22,16 @@ public class Cliente extends Login {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public List<EntidadeDominio> getCartoes() {
+	public List<Cartao> getCartoes() {
 		return cartoes;
 	}
-	public void setCartoes(List<EntidadeDominio> cartoes) {
+	public void setCartoes(List<Cartao> cartoes) {
 		this.cartoes = cartoes;
 	}
-	public List<EntidadeDominio> getEnderecos() {
+	public List<Endereco> getEnderecos() {
 		return enderecos;
 	}
-	public void setEnderecos(List<EntidadeDominio> enderecos) {
+	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}
 	
