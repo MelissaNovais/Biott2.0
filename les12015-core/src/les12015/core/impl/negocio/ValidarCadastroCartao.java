@@ -14,7 +14,7 @@ public class ValidarCadastroCartao implements IStrategy{
 	public String processar(EntidadeDominio entidade) {
 		Cartao car = (Cartao) entidade;
 		CartaoDAO dao = new CartaoDAO();
-		Cartao carNumero = (Cartao) new EntidadeDominio();
+		Cartao carNumero = (Cartao) new Cartao();
 		carNumero.setNumero(car.getNumero());
 		List<EntidadeDominio> cartoes;
 		try {

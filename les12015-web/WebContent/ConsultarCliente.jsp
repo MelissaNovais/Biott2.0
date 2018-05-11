@@ -77,7 +77,7 @@
 	                                <th scope="col" > Nome</th>
 	                                <th scope="col">E-mail</th>
 	                                <th scope="col">CPF</th>
-	                                <th scope="col"  class="text-center" >Data de Cadastro</th>
+	                                <th scope="col"  class="text-center" >Situação da conta</th>
 	                         	</tr>
 	                     	</thead>
 	                        <tbody>
@@ -87,7 +87,13 @@
 		                                    <td> ${c.nome} </td>
 		                                    <td> ${c.email} </td>
 		                                    <td> ${c.cpf} </td>
-				                             <td  class="text-center" >25/03/2015</td>
+		                                    <c:if test = "${c.status}">
+		                                    	<td class="text-center" >Ativa</td>
+		                                    </c:if>
+		                                    <c:if test = "${not c.status}"> 
+		                                    	<td class="text-center" >Desativada</td>
+		                                    </c:if>
+				                             
 		                                </tr>
 		                        </c:forEach>
 	                                

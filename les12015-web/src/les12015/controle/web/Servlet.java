@@ -18,6 +18,7 @@ import les12015.controle.web.command.impl.VisualizarCommand;
 import les12015.controle.web.vh.IViewHelper;
 import les12015.controle.web.vh.impl.CartaoViewHelper;
 import les12015.controle.web.vh.impl.ClienteViewHelper;
+import les12015.controle.web.vh.impl.CupomViewHelper;
 import les12015.controle.web.vh.impl.EnderecoViewHelper;
 import les12015.controle.web.vh.impl.LivroViewHelper;
 import les12015.controle.web.vh.impl.LoginViewHelper;
@@ -79,8 +80,16 @@ public class Servlet extends HttpServlet {
     	vhs.put("/les12015-web/ExcluirEndereco", new EnderecoViewHelper());
     	vhs.put("/les12015-web/AlterarEndereco", new EnderecoViewHelper());
     	vhs.put("/les12015-web/ConsultarEndereco", new EnderecoViewHelper());
+    	
+    	vhs.put("/les12015-web/SalvarCupom", new CupomViewHelper());
+    	vhs.put("/les12015-web/ExcluirCupom", new CupomViewHelper());
+    	vhs.put("/les12015-web/AlterarCupom", new CupomViewHelper());
+    	vhs.put("/les12015-web/ConsultarCupomCliente", new CupomViewHelper());
+    	vhs.put("/les12015-web/ConsultarCupomCompra", new CupomViewHelper());
  
-    	vhs.put("/les12015-web/Logar", new LoginViewHelper());
+    	vhs.put("/les12015-web/ConsultarLogin", new LoginViewHelper());
+    	vhs.put("/les12015-web/AlterarLogin", new LoginViewHelper());
+    	vhs.put("/les12015-web/ExcluirLogin", new LoginViewHelper());
     	
     	
     }

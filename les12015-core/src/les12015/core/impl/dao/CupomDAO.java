@@ -14,12 +14,11 @@ public class CupomDAO extends AbstractJdbcDAO {
 
 	public CupomDAO() {
 		super("cupom", "cup_id");
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override
 	public void salvar(EntidadeDominio entidade) throws SQLException {
-		// TODO Auto-generated method stub
 
 		openConnection();
 		PreparedStatement pst = null;
@@ -65,7 +64,9 @@ public class CupomDAO extends AbstractJdbcDAO {
 
 	@Override
 	public void alterar(EntidadeDominio entidade) throws SQLException {
-		// TODO Auto-generated method stub
+		PreparedStatement pst = null;
+		Cupom cupom = (Cupom) entidade;
+		String sql = null;
 
 	}
 
@@ -76,14 +77,14 @@ public class CupomDAO extends AbstractJdbcDAO {
 		Cupom cupom = (Cupom) entidade;
 		String sql = null;
 		
-		//Juntando as tabelas
+		
 		sql= "SELECT * FROM CUPOM WHERE 1 = 1";
 		
 		if(cupom.getId() != null) {
 			sql = sql + "AND cup_id = " + cupom.getId() + "";
 		}
 		if (cupom.getCodigo() != null) {
-			sql = sql + " AND cup_codigo = " + cupom.getCodigo() + "";
+			sql = sql + " AND cup_codigo = '" + cupom.getCodigo() + "'";
 		}
 		if(cupom.getCliente() != null) {
 			sql = sql + " AND cup_cli_id = " + cupom.getCliente().getId() + "";
@@ -100,6 +101,7 @@ public class CupomDAO extends AbstractJdbcDAO {
 				cup.setCodigo(rs.getString("cup_codigo"));
 				cup.setValor(rs.getDouble("cup_valor"));
 				cup.setId(rs.getInt("cup_cli_id"));
+				cup.setStatus(rs.getBoolean("cup_status"));
 				cupons.add(cup);
 			}
 			return cupons;

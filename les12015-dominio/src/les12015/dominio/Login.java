@@ -5,9 +5,9 @@ public class Login extends EntidadeDominio{
 	private String email;
 	private String senha;
 	private String confSenha;
-	private String tipoUsuario;					//Se eh um usuario ou admin
+	private String tipoUsuario;		//Se eh um usuario ou admin
 	private int idUsuario;
-	private boolean status;
+	private boolean status;			//Conta ativa?
 	
 	public String getEmail() {
 		return email;

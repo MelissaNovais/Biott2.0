@@ -10,6 +10,7 @@ public class Cliente extends Login {
 	private String cpf;
 	private List<Cartao> cartoes = new ArrayList<Cartao>();
 	private List<Endereco> enderecos = new ArrayList<Endereco>();
+	
 	public String getNome() {
 		return nome;
 	}

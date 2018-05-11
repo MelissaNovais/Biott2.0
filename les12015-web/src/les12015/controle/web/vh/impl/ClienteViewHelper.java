@@ -68,7 +68,7 @@ public class ClienteViewHelper implements IViewHelper {
 	                cliente.setEmail(email);
 	            }
 	
-				//Colocando no Obj cliente
+				//Colocando no Obj cliente ... Pq se eu tiro isso ele para de funfar??
 				cliente.setEmail(email);
 				cliente.setCpf(cpf);
 				cliente.setNome(nome);

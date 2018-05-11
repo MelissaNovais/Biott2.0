@@ -16,7 +16,7 @@
 						<div class="col-md-9">
 			                <div class="form-group">
 			                    <div class="input-group">
-			                    	<input type="tel" class="form-control" name="cardNumber" id="txtNumero"
+			                    	<input type="tel" class="form-control" name="txtNumero" id="txtNumero"
 			                        	placeholder="Número de Cartão Válido"
 			             				autocomplete="cc-number" required autofocus />
 			                     	<span class="input-group-addon"><i class="fa fa-credit-card" id="mini-cartao"></i></span>
@@ -26,7 +26,7 @@
 					
 						<div class="col-md-3">
 			                <div class="form-group">
-			                    <input type="tel" class="form-control" name="cardExpiry" id="txtExpiracao"
+			                    <input type="tel" class="form-control" name="txtExpiracao" id="txtExpiracao"
 			                     	placeholder="Expiração: MM/AA"  autocomplete="cc-exp" required />
 							</div> 
 						</div>		
@@ -34,16 +34,24 @@
 					<div class="row">
 						<div class="col-md-9">
 			                <div class="form-group">
-			                    <input type="text" id="txtTitular" class="form-control" name="couponCode" placeholder = "Nome do Titular"/>
+			                    <input type="text" id="txtTitular" class="form-control" name="txtTitular" placeholder = "Nome do Titular"/>
 							</div> 
 						</div>		
 						<div class="col-md-3">
 			                <div class="form-group">
-			                    <input type="tel" class="form-control" name="cardCVC" id="txtCodSeguranca"
+			                    <input type="tel" class="form-control" name="txtCodSeguranca" id="txtCodSeguranca"
 			                    	placeholder="Cód de Segurança" autocomplete="cc-csc" required/>
 							</div> 
-						</div>					
+						</div>			
 					</div>
+					
+					<div class="row">
+						<div class="col-md-9">
+							<div class="form-check">
+					            <label class="checkbox-inline"><input type="checkbox" name= "carPreferencialCB" value="">Marcar como Preferencial</label>
+							</div> 
+						</div>
+					</div>	
 			</div>
 		</div>
 	</body>

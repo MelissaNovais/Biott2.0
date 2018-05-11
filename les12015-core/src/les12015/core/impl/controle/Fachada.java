@@ -12,6 +12,7 @@ import les12015.core.IStrategy;
 import les12015.core.aplicacao.Resultado;
 import les12015.core.impl.dao.CartaoDAO;
 import les12015.core.impl.dao.ClienteDAO;
+import les12015.core.impl.dao.CupomDAO;
 import les12015.core.impl.dao.EnderecoDAO;
 import les12015.core.impl.dao.FornecedorDAO;
 import les12015.core.impl.dao.LoginDAO;
@@ -20,8 +21,10 @@ import les12015.core.impl.negocio.ValidarCadastroEndereco;
 import les12015.core.impl.negocio.ValidarCamposCadastroCliente;
 import les12015.core.impl.negocio.ValidarCamposLogin;
 import les12015.core.impl.negocio.ValidarTrocaSenha;
+import les12015.core.impl.negocio.VerificarCupom;
 import les12015.dominio.Cartao;
 import les12015.dominio.Cliente;
+import les12015.dominio.Cupom;
 import les12015.dominio.Endereco;
 import les12015.dominio.EntidadeDominio;
 import les12015.dominio.Fornecedor;
@@ -57,6 +60,7 @@ public class Fachada implements IFachada {
 		CartaoDAO cartaoDAO = new CartaoDAO();
 		EnderecoDAO enderecoDAO = new EnderecoDAO();
 		LoginDAO loginCliDAO = new LoginDAO();
+		CupomDAO cupomDAO = new CupomDAO();
 
 		
 		/* Adicionando cada dao no MAP indexando pelo nome da classe */
@@ -65,6 +69,7 @@ public class Fachada implements IFachada {
 		daos.put(Endereco.class.getName() , enderecoDAO);	
 		daos.put(Cartao.class.getName(), cartaoDAO);
 		daos.put(Login.class.getName(), loginCliDAO);
+		daos.put(Cupom.class.getName(), cupomDAO);
 		
 		
 		/* Criando instâncias de regras de negócio a serem utilizados*/		
@@ -73,7 +78,7 @@ public class Fachada implements IFachada {
 		ValidarCadastroCartao validarCartao = new ValidarCadastroCartao();
 		ValidarCamposLogin validarLogin = new ValidarCamposLogin();
 		ValidarTrocaSenha validarTrocaSenha = new ValidarTrocaSenha();
-		
+		VerificarCupom verificarCupom = new VerificarCupom();
 		
 		
 		//Criar  as listas com regras de negocio/
@@ -81,11 +86,11 @@ public class Fachada implements IFachada {
 		rnsSalvarCliente.add(validarCadastroCliente);
 		List<IStrategy> rnsExcluirCliente = new ArrayList<IStrategy>();//Nao fizemos Ainda
 		List<IStrategy> rnsAlterarCliente = new ArrayList<IStrategy>();//Nao fizemos Ainda
-		rnsAlterarCliente.add(validarTrocaSenha);
 		List<IStrategy> rnsConsultarCliente = new ArrayList<IStrategy>();//Nao fizemos Ainda
 		
 		List<IStrategy> rnsSalvarLogin = new ArrayList<IStrategy>();
 		List<IStrategy> rnsAlterarLogin = new ArrayList<IStrategy>();
+		rnsAlterarLogin.add(validarTrocaSenha);
 		List<IStrategy> rnsExcluirLogin = new ArrayList<IStrategy>();
 		List<IStrategy> rnsConsultarLogin = new ArrayList<IStrategy>();
 		rnsConsultarLogin.add(validarLogin);
@@ -101,6 +106,12 @@ public class Fachada implements IFachada {
 		List<IStrategy> rnsAlterarEndereco = new ArrayList<IStrategy>();
 		List<IStrategy> rnsConsultarEndereco = new ArrayList<IStrategy>();
 		List<IStrategy> rnsExcluirEndereco = new ArrayList<IStrategy>();
+		
+		List<IStrategy> rnsSalvarCupom = new ArrayList<IStrategy>();
+		List<IStrategy> rnsAlterarCupom = new ArrayList<IStrategy>();
+		List<IStrategy> rnsConsultarCupom = new ArrayList<IStrategy>();
+		rnsConsultarCupom.add(verificarCupom);
+		List<IStrategy> rnsExcluirCupom = new ArrayList<IStrategy>();
 		
 		//Criar o HashMap de cada classe com as listas(com regra de negocio) indexado pela operação
 		
@@ -130,6 +141,12 @@ public class Fachada implements IFachada {
 		rnsLogin.put("EXCLUIR", rnsExcluirLogin);
 		rnsLogin.put("CONSULTAR", rnsConsultarLogin);
 		
+		Map<String, List<IStrategy>> rnsCupom = new HashMap<String, List<IStrategy>>();
+		rnsCupom.put("SALVAR", rnsSalvarCupom);
+		rnsCupom.put("ALTERAR", rnsAlterarCupom);
+		rnsCupom.put("EXCLUIR", rnsExcluirCupom);
+		rnsCupom.put("CONSULTAR", rnsConsultarCupom);
+		
 		
 		/*Colocar os HashMaps criados no HashMap rns indexado pelo nome de cada classe
 			Resumindo: Uma lista(rn) dentro de um hashmap(rn indexado pela operação) 
@@ -140,6 +157,7 @@ public class Fachada implements IFachada {
 		rns.put(Cartao.class.getName(), rnsCartao);
 		rns.put(Endereco.class.getName(), rnsEndereco);
 		rns.put(Login.class.getName(), rnsLogin);
+		rns.put(Cupom.class.getName(), rnsCupom);
 		
 		
 	}
@@ -160,8 +178,6 @@ public class Fachada implements IFachada {
 				List<EntidadeDominio> entidades = new ArrayList<EntidadeDominio>();
 				entidades.add(entidade);
 				resultado.setEntidades(entidades);
-				Cliente cli = (Cliente) resultado.getEntidades().get(0);
-				System.out.println(cli.getNome());
 			} catch (SQLException e) {
 				e.printStackTrace();
 				resultado.setMsg("Não foi possível realizar o registro!");

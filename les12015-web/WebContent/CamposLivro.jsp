@@ -205,7 +205,7 @@
 				$("#txtAreaAutor").text(autores);	
 				
 			}	
-			function removerAutor(event){ //Uam vez q ele limpa ele nao aceita mais nada, nao sei pq
+			function removerAutor(event){ 
 				event.preventDefault();
 				$("#txtAreaAutor").text(''); 	
 				arrayAut = [];
@@ -225,7 +225,7 @@
 				$("#txtAreaCategoria").text(categorias);	
 				
 			}	
-			function removerCategoria(event){ //Uam vez q ele limpa ele nao aceita mais nada, nao sei pq
+			function removerCategoria(event){ 
 				event.preventDefault();
 				$("#txtAreaCategoria").text('');
 				arrayCat = [];

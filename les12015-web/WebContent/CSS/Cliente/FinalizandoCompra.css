@@ -1,5 +1,12 @@
 @charset "ISO-8859-1";
 
+#alert-completar-cadastro{
+	font-size: 20px; 
+	margin-bottom: 30px; 
+	margin-top:20px; right: 10%; 
+	left: 25%; 
+	width: 50%;	
+}
 .btn-dropdown{
     margin-left: 420px;
     border-bottom-width: 0px;

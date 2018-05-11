@@ -22,8 +22,7 @@ public class LoginViewHelper implements IViewHelper{
 		String operacao = request.getParameter("operacao");
 		Login login = new Login(); 
 		
-		System.out.println("Viewhelper Login Get");
-		if(operacao.equals("CONSULTAR")) {
+		if(operacao.equals("CONSULTAR")) { //Ou logar?
 			String email = request.getParameter("txtEmail");
 			String senha = request.getParameter("txtSenha");
 			
@@ -33,6 +32,17 @@ public class LoginViewHelper implements IViewHelper{
 			if (senha != null && !senha.trim().equals("")) 
 				login.setSenha(senha);
 				
+		}
+		
+		if(operacao.equals("ALTERAR")) {
+			String senha = request.getParameter("txtSenha");
+			String confSenha = request.getParameter("txtConfSenha");
+			
+			if (senha != null && !senha.trim().equals(""))
+				login.setSenha(senha);
+			
+			if (confSenha != null && !confSenha.trim().equals(""))
+				login.setConfSenha(confSenha);
 		}
 		return login;
 	}
@@ -45,7 +55,7 @@ public class LoginViewHelper implements IViewHelper{
 		
 		
 		if(resultado.getMsg() == null){
-			if(operacao.equals("CONSULTAR")){
+			if(operacao.equals("CONSULTAR")){	//Ou consultar??
 				
 				if(log.getTipoUsuario().equals("cliente")) {
 					
@@ -62,7 +72,13 @@ public class LoginViewHelper implements IViewHelper{
 				else if (log.getTipoUsuario().equals("admin")) {
 					reqD = request.getRequestDispatcher("HomeAdmin.jsp");  
 				}				
-			}	
+			}
+			if(operacao.equals("ALTERAR")){
+				resultado.setMsg("Senha alterada com Sucesso");
+				request.getSession().setAttribute("resultado", resultado);
+				reqD = request.getRequestDispatcher("Perfil.jsp"); 
+			}
+			
 		}
 		else if (resultado.getMsg() != null){
 			request.getSession().setAttribute("resultado", resultado);

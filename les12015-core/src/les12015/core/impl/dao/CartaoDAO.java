@@ -42,6 +42,7 @@ public class CartaoDAO extends AbstractJdbcDAO{
 			pst.setString(5, cartao.getDataVenc());
 			pst.setBoolean(6, cartao.isPreferencial());
 			
+			
 			pst.executeUpdate();	
 			
 			ResultSet result = pst.getGeneratedKeys();

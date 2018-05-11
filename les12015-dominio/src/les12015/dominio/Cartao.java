@@ -5,9 +5,10 @@ public class Cartao extends EntidadeDominio{
 	private String titular;
 	private String numero;
 	private String codSeguranca;
-	private String dataVenc;
+	private String dataVenc;			//String?!
 	private boolean preferencial;
 	private int idCliente;
+	
 	public String getTitular() {
 		return titular;
 	}

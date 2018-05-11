@@ -1,5 +1,12 @@
 @charset "ISO-8859-1";
 
+
+.alert{
+	font-size: 20px; 
+	margin-left: 17%; 
+	margin-top: 20px;
+	width: 65%;	
+}
 .menu-perfil{
 	margin-top: 20px;
 	margin-bottom: 50px;
@@ -84,4 +91,4 @@
 #mini-cartao{
 	position: relative;
 	top: 5px;
-	right:
+	right: 8px;

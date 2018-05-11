@@ -111,6 +111,7 @@ public class ClienteDAO extends AbstractJdbcDAO {
 				cliente.setNome(result.getString("cli_nome"));
 				cliente.setId(result.getInt("cli_id"));
 				cliente.setEmail(result.getString("log_email"));
+				cliente.setStatus(result.getBoolean("log_status"));
 				
 				
 				clientes.add(cliente);

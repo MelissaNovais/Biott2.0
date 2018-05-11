@@ -44,7 +44,7 @@
 		        <div class="col-12 col-lg-6 add_to_cart_block">
 		            <div class="card bg-light mb-3">
 		                <div class="card-body">
-		                    <p class="price" ">30.00 R$</p>
+		                    <p class="price" >30.00 R$</p>
   
 		                    <form method="get" action="Carrinho.jsp">
 		                        <div class="form-group">

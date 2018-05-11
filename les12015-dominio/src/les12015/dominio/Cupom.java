@@ -5,6 +5,7 @@ public class Cupom extends EntidadeDominio{
 		private double valor;
 		private String codigo;
 		private Cliente cliente;
+		private boolean status;	//Ativo ou usado
 		
 		public double getValor() {
 			return valor;
@@ -23,6 +24,12 @@ public class Cupom extends EntidadeDominio{
 		}
 		public void setCliente(Cliente cliente) {
 			this.cliente = cliente;
+		}
+		public boolean isStatus() {
+			return status;
+		}
+		public void setStatus(boolean status) {
+			this.status = status;
 		}
 		
 }

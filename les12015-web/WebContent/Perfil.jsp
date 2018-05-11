@@ -14,9 +14,32 @@
         <link rel="icon" href = "Img/livro-icone.png">
     </head>
     <body>
-
+		
+		<%	
+			Cliente cliente = (Cliente) request.getAttribute("cliente");
+			Resultado resultado = (Resultado) request.getAttribute("resultado");
+			List<Cupom> cupons = new ArrayList<Cupom>();
+			List<Endereco> enderecos = new ArrayList<Endereco>();
+			List<ItemCompra> historico = new ArrayList<ItemCompra>();
+			List<Cartao> cartoes = new ArrayList<Cartao>();
+			String msg = request.getParameter("msgSucesso");
+			cartoes = (ArrayList<Cartao>) request.getAttribute("cartoes");
+			cupons = (ArrayList<Cupom>) request.getAttribute("cupons");
+			enderecos = (ArrayList<Endereco>) request.getAttribute("enderecos");
+			historico = (ArrayList<ItemCompra>) request.getAttribute("historico");
+			
+		%>
+		
         <c:import url= "CabecalhoCliente.jsp"/>
 		
+		<c:if test="${not empty resultado.msg}">
+					<div class="alert alert-info text-center alert-dismissible" role="alert" >
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						${resultado.msg}
+					  	<br/>
+					</div>
+				</c:if>
+				
 		<div class="container">
   
 	        <div class="row" id="cont">
@@ -34,6 +57,11 @@
 	                </ul>
 	            </div>
 	            
+	          
+		     	
+				
+				
+	            
 	             <div class="col-md-9  admin-content" id="perfil">
 	                <div class="panel panel-success"  style="margin: 1em;">
 	                    <div class="panel-heading" >
@@ -49,7 +77,7 @@
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
-										<input id="txtEmail" disabled class="form-control" type="text" placeholder="Maria da Silva">	
+										<input id="txtEmail" disabled class="form-control" type="text" value ="${cliente.email}">	
 									</div>
 								</div>
 								<div class="col-md-1">
@@ -59,7 +87,7 @@
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
-										<input id="txtCpf"disabled class="form-control" type="text" placeholder="456.654.489-78">	
+										<input id="txtCpf"disabled class="form-control" type="text" value = "${cliente.cpf}">	
 									</div>
 								</div>							
 							</div>					
@@ -69,41 +97,79 @@
 	                    <div class="panel-heading">
 	                        <h3 class="panel-title">Endereço Preferencial</h3>
 	                    </div>
-	                    <div class="panel-body">
-	                    	<div class="row">
-								<div class="col-md-2">
-									<div class="form-group">
-										<label>Identificação: </label>
+	                    <c:set var="preferencial" value="false"/>
+	                    <c:if test = "${not empty enderecos}">
+	                    	<c:forEach var="end" items= "${enderecos }">
+			               		<c:if test= "${end.pereferencial }">
+			               			<c:set var="preferencial" value="true"/>
+			                   		<div class="panel-body">
+		                    			<div class="row">
+											<div class="col-md-2">
+												<div class="form-group">
+													<label>Identificação: </label>
+												</div>
+											</div>
+			                    			<div class="col-md-8">
+												<div class="form-group">
+													<input id="txtIdentificacaoEnd" disabled class="form-control" type="text" value = "${end.identificacao}">	
+												</div>
+											</div>
+										</div>			                        
+		                   			 </div>											
+			                   	</c:if>
+			            	</c:forEach>
+		               	</c:if>
+		               	<c:if test="${not preferencial}">
+		               		<div class="panel-body">
+		                    	<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label>Você Não Possui um Endereço Cadastrado como Preferencial </label>
+										</div>
 									</div>
-								</div>
-								<div class="col-md-8">
-									<div class="form-group">
-										<input id="txtIdentificacoEnd" disabled class="form-control" type="text" placeholder="Casa da Mamãe">	
-									</div>
-								</div>
-							</div>	
-	                        
-	                    </div>
+		                    	</div>			                        
+		                    </div>
+		               	</c:if>
 	                </div>
+	                <c:set var="preferencial" value="false"/>
 	                <div class="panel panel-success border" style="margin: 1em;">
 	                    <div class="panel-heading">
 	                        <h3 class="panel-title">Cartão Preferencial</h3>
-	
 	                    </div>
-	                    <div class="panel-body">
-	                        <div class="row">
-								<div class="col-md-3">
-									<div class="form-group">
-										<label>Número do Cartão: </label>
+	                    
+	                    <c:if test = "${not empty cartoes }">
+		                   <c:forEach var="car" items= "${cartoes }">
+			                   	<c:if test= "${car.preferencial }">
+			                   		<c:set var="preferencial" value="true"/>
+			                    	<div class="panel-body">
+		                        		<div class="row">
+											<div class="col-md-3">
+												<div class="form-group">
+													<label>Titular do Cartão: </label>
+												</div>
+											</div>
+			                    			<div class="col-md-7">
+												<div class="form-group">
+													<input name = "txtTitular" disabled class="form-control" type="text" value = "${car.titular}">	
+												</div>
+											</div>
+										</div>
 									</div>
-								</div>
-								<div class="col-md-7">
-									<div class="form-group">
-										<input id="txtIdentificacoEnd" disabled class="form-control disable" type="text" placeholder="********7899">	
+			                    </c:if>
+			               	</c:forEach>
+		               	</c:if>
+		               	
+		               	<c:if test="${not preferencial}">
+		               		<div class="panel-body">
+		                        <div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label>Você Não Possui um Cartão Cadastrado como Preferencial</label>
+										</div>
 									</div>
-								</div>
-							</div>	
-	                    </div>
+								</div>	
+		                    </div>
+		               	</c:if>
 	                </div>
 	            </div>
 				
@@ -112,29 +178,39 @@
 	                	<div class="panel-heading" style="background-color: #36C90F;">
 	                        <h3 class="panel-title">Cupons</h3>
 	                    </div>
-	                    <div class="panel-body" >                     
-	                       	<table class="table table-striped table-hover">
-						   		<thead>
-							    	<tr>
-							          	<th>Numero do Cupom</th>
-							          	<th > &nbsp;Validade</th>
-							          	<th>&nbsp;&nbsp;Valor</th>						        
-					        		</tr>
-							 	</thead>
-							    <tbody>
-							    	<tr>
-							          	<th>789987465</th>
-							          	<td >12/12/2018</td>
-							          	<td>R$150,00</td>
-							       </tr>
-							       <tr>
-							     		<th>654987321</th>
-							          	<td>10/07/2018</td>
-							       		<td>R$60,00</td>
-							       </tr>
-							    </tbody>
-							</table>
-						</div>
+	                    
+	                    <c:if test="${not empty cupons}">
+	                    	<div class="panel-body" >                     
+		                       	<table class="table table-striped table-hover">
+							   		<thead>
+								    	<tr>
+								          	<th>Código do Cupom</th>
+								          	<th>&nbsp;&nbsp;Teste R$</th>	
+								          	<th>&nbsp;&nbsp;Valor R$</th>						        
+						        		</tr>
+								 	</thead>
+								    <tbody>
+								    	<c:forEach var = "cup" items = "${cupons}">
+								    		<tr>
+								    			<th>${cup.codigo}</th>
+									          	<td><fmt:formatNumber value = "${cup.valor}" type = "currency"/></td>
+									          	<td>${cup.valor}</td>
+								          	</tr>
+								      	 </c:forEach>
+								    </tbody>
+								</table>
+							</div>
+	                    </c:if>
+	                    <c:if test="${empty cupons }">
+	                    	<div class="panel-body" > 
+	                    		<div class="row">									
+									<div class="col-md-12">
+										<label>Você Não Possui Cupons Disponíveis </label>
+									</div>										
+								</div>
+	                    	</div>
+	                    </c:if>
+	                    
 					</div>
 				</div>
 	
@@ -164,6 +240,7 @@
 												   <li><a href="#">Pedido de Troca Pendente</a></li>
 												   <li><a href="#">Troca Aprovada</a></li>
 												   <li><a href="#">Troca Cancelada</a></li>
+												    <li><a href="#">Trocado</a></li>
 												   <li role="separator" class="divider"></li>
 												   <li><a href="#">Todos</a></li>
 											 </ul>
@@ -174,42 +251,48 @@
 	               		</div>
 	               		<div class="panel-body" >
 							<table class="table table-striped table-hover">
-						   		<thead>
-							    	<tr> 
-							    		<th >Id da Compra </th>
-							          	<th class="text-center ">Livro </th>
-							          	<th class="text-center ">Quantidade</th>
-							          	<th class="text-center ">Preço</th>
-							          	<th class="text-center ">Status</th>
-							          	<th >Solicitar Troca</th>						          	
-					        		</tr>
-							 	</thead>
-							    <tbody>
-							    	<tr>
-							          	<th>789987465</th>
-							          	<td>A Pequena Sereia</td>
-							          	<td class="text-center ">1</td>
-							          	<td class="text-center ">R$150,00</td>
-							          	<td>Recebido</td>
-							          	<td class="text-center "><button class="btn btn-danger btn-sm ">Trocar</button></td>					          	
-							       </tr>
-							       <tr>
-							          	<th>321654789</th>
-							          	<td>A Câmera Perdida</td>
-							          	<td class="text-center ">1</td>
-							          	<td class="text-center ">R$150,00</td>
-							          	<td>Em Caminho</td>
-							          	<td> </td>
-							       </tr>
-							    </tbody>
-							</table>
+						   		<c:if test="${not empty historico }">
+						   			<thead>
+								    	<tr> 
+								    		<th >Id da Compra </th>
+								          	<th class="text-center ">Livro </th>
+								          	<th class="text-center ">Qtde</th>
+								          	<th class="text-center ">Preço</th>
+								          	<th class="text-center ">Status</th>
+								          	<th >Solicitar Troca</th>						          	
+						        		</tr>
+								 	</thead>
+								    <tbody>
+								    <%-- Não eh id da tabela Compra eh o id da tabela Item-compra --%> 
+								    	<c:forEach var="compra" items="${historico }">
+								    		<tr>
+									          	<th>${compra.id}</th>
+									          	<td>${compra.livro.titulo }</td>
+									          	<td class="text-center ">${compra.qtde}</td>
+									          	<td class="text-center ">${compra.livro.preco}</td>
+									          	<td>${compra.statusDaCompra }</td>
+									          	<c:if test="${compra.statusDaCompra  == 'Recebido' }">
+									          		<td class="text-center "><button class="btn btn-danger btn-sm ">Trocar</button></td>
+									          	</c:if>
+									     	</tr>
+								    	</c:forEach>
+								    </tbody>
+						   		</c:if>
+						   		<c:if test="${empty historico }">
+						   			<div class="row">									
+										<div class="col-md-12">
+											<label>Você nao Comprou nada Ainda. Mude isso  ; )</label>
+										</div>
+									</div>
+								</c:if>
+						   	</table>
 	                	</div>
 	               	</div>
 	          	</div>
 	
 	
 	            <div class="col-md-9  admin-content" id="mudar-senha">
-	                <form action="AlterarCliente" method="post">
+	                <form action="AlterarLogin" method="post">
 	                    <div class="panel panel-success border" style="margin: 1em;">
 	                        <div class="panel-heading">
 	                            <h3 class="panel-title" ><label for="new_password" class="control-label panel-title">Nova Senha</label></h3>
@@ -217,7 +300,7 @@
 	                        <div class="panel-body">
 	                            <div class="form-group">
 	                                <div class="col-sm-10">
-	                                    <input type="password" class="form-control" name="password" id="new_password" >
+	                                    <input type="password" class="form-control" name="txtSenha" id="new_password" >
 	                                </div>
 	                            </div>
 	
@@ -227,7 +310,7 @@
 	             
 	                    <div class="panel panel-success border" style="margin: 1em;">
 	                        <div class="panel-heading">
-	                            <h3 class="panel-title"  ><label for="confirm_password" class="control-label panel-title">Confirmar Senha</label></h3>
+	                            <h3 class="panel-title"  ><label for="txtConfSenha" class="control-label panel-title">Confirmar Senha</label></h3>
 	                        </div>
 	                        <div class="panel-body">
 	                            <div class="form-group">
@@ -253,16 +336,16 @@
 	            
 	            
 	            <form action = "SalvarCartao" method= "post">
-	            <div class="col-md-9  admin-content" id="cadastrar-cartao">
-					<c:import url= "Cartao.jsp"/>
-					<div class="panel-body">
-	                   	<div class="form-group">
-	                       	<div class="pull-left">
-	                          	<button type="submit" class="form-control btn btn-success" name="operacao" id="operacao" value="SALVAR">Cadastrar</button>
-	                      	</div>
-	                    </div>
-	               	</div>
-				</div>
+		            <div class="col-md-9  admin-content" id="cadastrar-cartao">
+						<c:import url= "Cartao.jsp"/>
+						<div class="panel-body">
+		                   	<div class="form-group">
+		                       	<div class="pull-left">
+		                          	<button type="submit" class="form-control btn btn-success" name="operacao" id="operacao" value="SALVAR">Cadastrar</button>
+		                      	</div>
+		                    </div>
+		               	</div>
+					</div>
 	            </form>
 	            
 	            <form action = "SalvarEndereco" method= "post">
@@ -286,32 +369,38 @@
 	                    </div>
 	                    <div class="panel-body">
 	                        <table class="table  table-hover" >
-						   		<thead >
-							    	<tr >
-							          	<th>Identificação do End</th>
-							          	<th class="text-center ">Selecionar como:</th>
-							          	<th class="text-center ">Selecionar como:</th>
-							          	<th></th>
-							          	
-					        		</tr>
-							 	</thead>
-							    <tbody>
-							    	<tr>
-							          	<th><input id="txtIdentificacaoEnd" disabled class="form-control" type="text" placeholder="Casa da Mmamãe"></th>
-							          	<td class="text-center "><label class="checkbox-inline"><input type="checkbox" value="">Preferencial</label></td>
-							          	<td class="text-center "><label class="checkbox-inline"><input type="checkbox" value="">Cobrança</label></td>
-							          	<form action = "ExcluirEndereco" method= "post">
-							          		<td><button class="btn btn-sm btn-danger" id="operacao" name="operacao" value="EXCLUIR">
-							          				<i class="fa fa-trash" style="padding: 4px;" ></i> </button></td>
-							          	</form>
-							       </tr>
-							       
-							    </tbody>
-							    
+							   <c:if test="${not empty enderecos }">
+							   		<thead >
+								    	<tr >
+								          	<th>Identificação do Endereço</th>
+								          	<th class="text-center ">Selecionar como:</th>
+								          	<th class="text-center "> </th>
+								          	<th></th>
+								          	
+						        		</tr>
+								 	</thead>
+								    <tbody>
+								   		<c:forEach var= "end" items = "${enderecos }">
+									    	<tr>
+									          	<th><label id="txtIdentificacaoEnd"  disable class="form-control" type="text" > ${endereco.identificacao} </th>
+												<td class="text-center "><label class="radio-inline"><input type="radio" name="rdEndPreferencial">Preferencial </label></td>
+											    <td class="text-center "><label class="radio-inline"><input type="radio" name="rdEndCobranca">Cobrança</label></td>
+									          	<td><button class="btn btn-sm btn-danger" id="operacao" name="operacao" value="EXCLUIR">
+									          				<i class="fa fa-trash" style="padding: 4px;" ></i> </button></td>
+									          
+									       </tr>
+									  	</c:forEach>
+								  	</tbody>
+								  	
+							  	</c:if>
+							  	<c:if test="${empty enderecos }">
+							  		<label>Você Não Possui Endereços Cadastrados</label>
+							  	</c:if>
+							  	
 							</table>
 							<form action = "AlterarEndereco" method= "post">    		
 								<button class="btn btn-sm btn-success" id="operacao" name="operacao" value="ALTERAR">Alterar</button>
-	                        </form>
+		                   	</form>
 						</div>	
 					</div>
 							
@@ -321,32 +410,38 @@
 	                    </div>
 	                    <div class="panel-body">
 	                    	<table class="table  table-hover">
-						   		<thead>
-							    	<tr>
-							          	<th>Numero do Cartão</th>
-							          	<th>Nome do Titular</th>
-							          	<th class="text-center ">Selecionar como:</th>
-							          	<th></th>
-							          	
-					        		</tr>
-							 	</thead>
-							    <tbody>
-							    	<tr>
-							          	<th><input id="txtNumCartao" disabled class="form-control" type="text" placeholder="*********7899"></th>
-							          	<td><input id="txtTitularCartao" disabled class="form-control" type="text" placeholder="Maria da Silva"></td>
-							          	<td class="text-center "><label class="checkbox-inline"><input type="checkbox" value="">Preferencial</label></td>
-							          	<form action = "ExcluirCartao" method= "post">
-							          		<td><button class="btn btn-sm btn-danger" id="operacao" name="operacao" value="EXCLUIR">
-							          				<i class="fa fa-trash" style="padding: 4px;" ></i> </button></td>
-							          	</form>
-							       </tr>
-							       
-							    </tbody>
-							    
+						   		<c:if test="${not empty cartoes }"> 
+							   		<thead>
+								    	<tr>
+								          	<th>Numero </th>
+								          	<th>Titular </th>
+								          	<th class="text-center ">Selecionar como:</th>
+								          	<th></th>
+								          	
+						        		</tr>
+								 	</thead>
+								    <tbody>
+								    	<c:forEach var = "car" items = "${cartoes}">
+									    	<tr>
+									          	<th><label id="txtNumeroCartao"  disable class="form-control" type="text" > ${car.numero} </th>
+									          	<th><label id="txtTitular"  disable class="form-control" type="text" > ${car.titular} </th>
+									          	<td class="text-center "><label class="radio-inline"><input type="radio" name="rdCartaoPreferencial">Preferencial</label></td>
+										        <form action = "ExcluirCartao" method= "post">
+									          		<td><button class="btn btn-sm btn-danger" id="operacao" name="operacao" value="EXCLUIR">
+									          				<i class="fa fa-trash" style="padding: 4px;" ></i> </button></td>
+									          	</form>
+									       </tr>
+									  	</c:forEach>
+								    </tbody>
+								    
+							    </c:if>
+							    <c:if test="${empty cartoes }">
+							  		<label>Você Não Possui Cartões Cadastrados</label>
+							  	</c:if>
 							</table>
 							<form action = "AlterarCartao" method= "post">    		
-								<button class="btn btn-sm btn-success" id="operacao" name="operacao" value="ALTERAR">Alterar</button>
-	                        </form>
+										<button class="btn btn-sm btn-success" id="operacao" name="operacao" value="ALTERAR">Alterar</button>
+	                       	</form>
 						</div>	
 	            	</div>
 	            	

@@ -38,7 +38,7 @@
 				<div class="thumbnail">
 			    	<img src="Img/livro-icone.png">
 			    </div>
-			    <form class="login-form" action ="Logar" method= "post">
+			    <form class="login-form" action ="ConsultarLogin" method= "post">
 			      	<input type="text" placeholder="Email"  id = "txtEmail" v-model="email"/>
 			      	<input type="password" placeholder="Senha" id = "txtSenha" v-model="senha"/>
 			      	<button name="operacao" id="operacao" value = "CONSULTAR"> Login </button> 
