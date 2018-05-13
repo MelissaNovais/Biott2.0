@@ -1,6 +1,11 @@
 @charset "ISO-8859-1";
 
-
+#alert{
+	font-size: 20px; 
+	margin-left: 38.5%; 
+	margin-top: 20px;
+	width: 23%;	
+}
 /* Form */
 .form {
     position: relative;

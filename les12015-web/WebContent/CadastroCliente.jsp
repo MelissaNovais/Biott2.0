@@ -27,7 +27,7 @@
 			<c:redirect url = "HomeCliente.jsp"/>
 		</c:if>
 		<!-- Avisa o q impediu o cadastro -->
-		<div class="alert alert-danger text-center alert-dismissible" role="alert" id="alert-sucesso">
+		<div class="alert alert-danger text-center alert-dismissible" role="alert" id="alert">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			${resultado.msg}
 	  		<br/>

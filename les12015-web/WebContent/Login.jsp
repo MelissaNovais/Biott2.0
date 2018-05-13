@@ -21,7 +21,7 @@
 		%>
 		
 		<c:if test="${not empty resultado}">
-			<div class="alert alert-danger text-center alert-dismissible" role="alert" id="alert-sucesso">
+			<div class="alert alert-danger text-center alert-dismissible" role="alert" id="alert">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				${resultado.msg}
 		  		<br/>
@@ -39,12 +39,12 @@
 			    	<img src="Img/livro-icone.png">
 			    </div>
 			    <form class="login-form" action ="ConsultarLogin" method= "post">
-			      	<input type="text" placeholder="Email"  id = "txtEmail" v-model="email"/>
-			      	<input type="password" placeholder="Senha" id = "txtSenha" v-model="senha"/>
+			      	<input type="text" placeholder="Email" name = "txtEmail" id = "txtEmail" v-model="email"/>
+			      	<input type="password" placeholder="Senha" name = "txtSenha" id = "txtSenha" v-model="senha"/>
 			      	<button name="operacao" id="operacao" value = "CONSULTAR"> Login </button> 
 			      </form>
 			       	<p class="message">Não tem uma conta?
-			        	<a href="CadastroInicial.jsp">Crie uma conta</a>
+			        	<a href="CadastroCliente.jsp">Crie uma conta</a>
 			      	</p>
 			</div>
 			

@@ -141,7 +141,7 @@ public class LoginDAO extends AbstractJdbcDAO {
 		List<EntidadeDominio> logins = new ArrayList<EntidadeDominio>();
 		String sql = null;
 
-		sql = "SELECT * FROM login WHERE log_email = '" + login.getEmail() + "' AND log_senha = '";
+		sql = "SELECT * FROM login WHERE log_email = '" + login.getEmail() + "' AND log_senha = ";
 		
 			try {
 				MessageDigest md  = MessageDigest.getInstance("MD5");
@@ -161,29 +161,33 @@ public class LoginDAO extends AbstractJdbcDAO {
 			pst = connection.prepareStatement(sql);
 			ResultSet result = pst.executeQuery();
 			while (result.next()) {
-				login = new Login();
+				Login log = new Login();
 				
 				// Pegando os atributos login
-				login.setEmail(result.getString("log_email"));
-				login.setId(result.getInt("log_id"));
-				login.setSenha(result.getString("log_senha"));
+				log.setEmail(result.getString("log_email"));
+				log.setId(result.getInt("log_id"));
+				log.setSenha(result.getString("log_senha"));
 				
 				int idCliente = result.getInt("log_cli_id");
 				int idAdmin = result.getInt("log_adm_id");
 				
 				if (idCliente > 0) {
-					login.setTipoUsuario("cliente");
-					login.setIdUsuario(idCliente);
+					log.setTipoUsuario("cliente");
+					log.setIdUsuario(idCliente);
 				}
 				else if (idAdmin > 0) {
-					login.setTipoUsuario("admin");
-					login.setIdUsuario(idAdmin);
+					log.setTipoUsuario("admin");
+					log.setIdUsuario(idAdmin);
 				}
-				
-				logins.add(login);
+				System.out.println(log.getEmail());
+				System.out.println(log.getSenha());
+				logins.add(log);
 			}
+			
+			
+			System.out.println("Array DAO " +  logins.size());
 			return logins;
-		} catch (SQLException e) {
+		}  catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;

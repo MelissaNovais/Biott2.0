@@ -1,6 +1,8 @@
 package les12015.controle.web.vh.impl;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import les12015.controle.web.vh.IViewHelper;
 import les12015.core.aplicacao.Resultado;
 import les12015.dominio.Cartao;
+import les12015.dominio.Cliente;
 import les12015.dominio.EntidadeDominio;
 
 public class CartaoViewHelper implements IViewHelper{
@@ -17,16 +20,13 @@ public class CartaoViewHelper implements IViewHelper{
 	public EntidadeDominio getEntidade(HttpServletRequest request) {
 		String operacao = request.getParameter("operacao");
 		Cartao cartao = new Cartao();
-		
-		
 
 		String numero = request.getParameter("txtNumero");
 		String codSeguranca = request.getParameter("txtCodSeguranca");
 		String titular = request.getParameter("txtTitular");
 		String dataVencimento = request.getParameter("txtExpiracao");
-		
-		
-		
+		Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
+			
 		if(operacao.equals("SALVAR")) {
 			if (numero != null && !numero.trim().equals(""))
 				cartao.setNumero(numero);
@@ -42,11 +42,12 @@ public class CartaoViewHelper implements IViewHelper{
 
 		}
 		cartao.setPreferencial(true);
-		cartao.setIdCliente(1263);
+		cartao.setIdCliente(cliente.getId());
 		
 		return cartao;
 	}
 
+	@SuppressWarnings("unchecked")
 	public void setView(Resultado resultado, HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
@@ -58,12 +59,15 @@ public class CartaoViewHelper implements IViewHelper{
 			if(operacao.equals("SALVAR")){
 				resultado.setMsg("Cartao Cadastrado com Sucesso!!");
 				request.getSession().setAttribute("resultado", resultado);
-				request.getSession().setAttribute("cartoes", resultado.getEntidades());
+				List<EntidadeDominio> cartoes = new ArrayList<EntidadeDominio>();
+				cartoes = (List<EntidadeDominio>) request.getSession().getAttribute("cartoes");
+				cartoes.add((EntidadeDominio) resultado.getEntidades().get(resultado.getEntidades().size() - 1));
+				request.getSession().setAttribute("cartoes", cartoes);
 				reqD = request.getRequestDispatcher("Perfil.jsp");  
 			}
 			if(operacao.equals("EXCLUIR")){
 				reqD = request.getRequestDispatcher(""); 
-				resultado.setMsg("Sua Conta foi Excluida :( ");
+				resultado.setMsg("Esse Cartão foi Excluido com sucesso ");
 			}
 			else if (operacao.equals("CONSULTAR")) {
 
@@ -71,10 +75,10 @@ public class CartaoViewHelper implements IViewHelper{
 			}
 		}
 		else if (resultado.getMsg() != null){
-			if(operacao.equals("SALVAR")){
+		
 				request.getSession().setAttribute("resultado", resultado);
 				reqD = request.getRequestDispatcher("Perfil.jsp");  	
-			}
+			
 		}
 		reqD.forward(request,response); 
 		

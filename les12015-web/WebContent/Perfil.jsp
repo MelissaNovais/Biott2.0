@@ -56,12 +56,7 @@
 	                    <li><a href="" data-target-id="logout"><i class="glyphicon glyphicon-log-out"></i> Logout &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; </a></li>
 	                </ul>
 	            </div>
-	            
-	          
-		     	
-				
-				
-	            
+
 	             <div class="col-md-9  admin-content" id="perfil">
 	                <div class="panel panel-success"  style="margin: 1em;">
 	                    <div class="panel-heading" >
@@ -148,9 +143,19 @@
 													<label>Titular do Cartão: </label>
 												</div>
 											</div>
-			                    			<div class="col-md-7">
+			                    			<div class="col-md-4">
 												<div class="form-group">
 													<input name = "txtTitular" disabled class="form-control" type="text" value = "${car.titular}">	
+												</div>
+											</div>
+											<div class="col-md-2">
+												<div class="form-group">
+													<label>Número: </label>
+												</div>
+											</div>
+			                    			<div class="col-md-3">
+												<div class="form-group">
+													<input name = "txtNumero" disabled class="form-control" type="text" value = "${car.numero}">	
 												</div>
 											</div>
 										</div>

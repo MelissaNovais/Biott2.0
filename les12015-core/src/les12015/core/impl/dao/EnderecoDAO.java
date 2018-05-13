@@ -138,11 +138,11 @@ public class EnderecoDAO extends AbstractJdbcDAO {
 		Cliente cliente  = (Cliente) entidade;
 		String sql = null;
 		
+		sql = "SELECT * FROM endereco WHERE end_cli_id = " + cliente.getId() + "";
+		
 		try {
 			
-			connection.setAutoCommit(false);
-			sql = "SELECT * FROM endereco WHERE cli_id = " + cliente.getId() + "";
-			
+			openConnection();
 			pst = connection.prepareStatement(sql);
 			
 			
