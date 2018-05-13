@@ -20,11 +20,18 @@
 		<title>Admin - XINGLING</title>
 	</head>
 	<body>
+	
+		<%	
+			Administrador admin = (Administrador) request.getAttribute("admin");
+			
+		%>
+		
+		
 		<c:import url="CabecalhoAdmin.jsp"/>
 		
 		<div class="alert alert-success alert-dismissible alert-home-admin text-center "  role="alert" >
 		 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<strong>Bem vindo de Volta Administrador</strong>
+				<strong>Bem vindo de Volta ${admin.nome }</strong>
 		</div>
 		<div class="alert alert-warning alert-dismissible alert-home-admin text-center" role="alert">
 			 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

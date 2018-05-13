@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import les12015.controle.web.vh.IViewHelper;
 import les12015.core.aplicacao.Resultado;
-import les12015.dominio.Cartao;
 import les12015.dominio.Cliente;
 import les12015.dominio.Endereco;
 import les12015.dominio.EntidadeDominio;
@@ -23,10 +22,12 @@ public class EnderecoViewHelper implements IViewHelper {
 		Endereco endereco = new Endereco();
 
 		String rua = request.getParameter("txtRua");
+		String cep = request.getParameter("txtCep");
 		String numero = request.getParameter("txtNumero");
 		String bairro = request.getParameter("txtBairro");
 		String cidade = request.getParameter("txtCidade");
 		String estado = request.getParameter("txtEstado");
+		String identificacao = request.getParameter("txtIdentificacaoEnd");
 		Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
 
 		if (operacao.equals("SALVAR")) {
@@ -40,6 +41,10 @@ public class EnderecoViewHelper implements IViewHelper {
 				endereco.setCidade(cidade);
 			if (estado != null && estado.trim().equals(""))
 				endereco.setEstado(estado);
+			if (identificacao != null && identificacao.trim().equals(""))
+				endereco.setIdentificacao(identificacao);
+			if (cep != null && cep.trim().equals(""))
+				endereco.setCep(cep);
 		}
 
 		endereco.setPereferencial(true);
@@ -55,7 +60,7 @@ public class EnderecoViewHelper implements IViewHelper {
 		String operacao = request.getParameter("operacao");
 		if (resultado.getMsg() == null) {
 			if (operacao.equals("SALVAR")) {
-				resultado.setMsg("Cartao Cadastrado com Sucesso!!");
+				resultado.setMsg("Endereço Cadastrado com Sucesso!!");
 				request.getSession().setAttribute("resultado", resultado);
 				List<EntidadeDominio> enderecos = new ArrayList<EntidadeDominio>();
 				enderecos = (List<EntidadeDominio>) request.getSession().getAttribute("enderecos");

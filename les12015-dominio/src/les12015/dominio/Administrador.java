@@ -1,6 +1,6 @@
 package les12015.dominio;
 
-public class Administrador extends EntidadeDominio {
+public class Administrador extends Login {
 	
 	private String nome;
 

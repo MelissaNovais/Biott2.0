@@ -14,7 +14,7 @@
 				<div class="row">
 					<div class="col-md-3">
 						<div class="form-group">
-							<input id="txtCep" class="form-control" type="text" placeholder="CEP">	
+							<input id="txtCep" name="txtCep" class="form-control" type="text" placeholder="CEP">	
 						</div>
 					</div>
 					<div class="col-md-7">
@@ -53,7 +53,7 @@
 				
 					<div class="col-md-12">
 						<div class="form-group">
-							<input id="txtIdentificacaoEnd" class="form-control" type="text" 
+							<input id="txtIdentificacaoEnd" name="txtIdentificacaoEnd" class="form-control" type="text" 
 								placeholder="Identificação de Endereço (Exemplo: Casa da Mamãe)">
 						</div>
 					</div>

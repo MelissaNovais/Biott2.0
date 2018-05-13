@@ -32,11 +32,12 @@ public class EnderecoDAO extends AbstractJdbcDAO {
 					
 			String sql = null;
 			
-			sql = "INSERT INTO endereco (end_cli_id, end_cep, end_rua, end_numero, end_bairro"
-					+ "end_identificacao, end_estado, end_cidade, end_complemento, end_preferencial, end_cobranca"
-					+ ") VALUES(?,?,?,?,?,?,?,?,?,?,?);";
+			sql = "INSERT INTO endereco (end_cli_id, end_cep, end_rua, end_numero, end_bairro, "
+					+ "end_identificacao, end_estado, end_cidade, end_complemento, end_preferencial, end_cobranca)" 
+					+ " VALUES(?,?,?,?,?,?,?,?,?,?,?);";
 			
 			pst = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			
 			pst.setInt(1, end.getIdCliente());
 			pst.setString(2, end.getCep());
 			pst.setString(3, end.getRua());

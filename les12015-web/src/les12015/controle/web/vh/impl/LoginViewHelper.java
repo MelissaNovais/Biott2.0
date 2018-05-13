@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import les12015.controle.web.vh.IViewHelper;
 import les12015.core.aplicacao.Resultado;
+import les12015.core.impl.dao.AdminDAO;
 import les12015.core.impl.dao.CartaoDAO;
 import les12015.core.impl.dao.ClienteDAO;
 import les12015.core.impl.dao.CupomDAO;
 import les12015.core.impl.dao.EnderecoDAO;
-import les12015.dominio.Cartao;
+import les12015.dominio.Administrador;
 import les12015.dominio.Cliente;
 import les12015.dominio.Cupom;
-import les12015.dominio.Endereco;
 import les12015.dominio.EntidadeDominio;
 import les12015.dominio.Login;
 
@@ -120,6 +120,19 @@ public class LoginViewHelper implements IViewHelper{
 						reqD = request.getRequestDispatcher("HomeCliente.jsp");  
 					}
 					else if (log.getTipoUsuario().equals("admin")) {
+						Administrador adm = new Administrador();
+						AdminDAO dao = new AdminDAO();
+						List<EntidadeDominio> lista = new ArrayList<EntidadeDominio>();
+						try {
+							lista = dao.consultar(adm);
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						adm = (Administrador) lista.get(0);
+						
+						
+						request.getSession().setAttribute("admin", adm);
 						reqD = request.getRequestDispatcher("HomeAdmin.jsp");  
 					}	
 				}
