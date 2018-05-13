@@ -19,6 +19,7 @@ import les12015.core.impl.dao.LoginDAO;
 import les12015.core.impl.negocio.ValidarCadastroCartao;
 import les12015.core.impl.negocio.ValidarCadastroEndereco;
 import les12015.core.impl.negocio.ValidarCamposCadastroCliente;
+import les12015.core.impl.negocio.ValidarCamposEndereco;
 import les12015.core.impl.negocio.ValidarCamposLogin;
 import les12015.core.impl.negocio.ValidarTrocaSenha;
 import les12015.core.impl.negocio.VerificarCupom;
@@ -79,7 +80,7 @@ public class Fachada implements IFachada {
 		ValidarCamposLogin validarLogin = new ValidarCamposLogin();
 		ValidarTrocaSenha validarTrocaSenha = new ValidarTrocaSenha();
 		VerificarCupom verificarCupom = new VerificarCupom();
-		
+		ValidarCamposEndereco validarCampoEnd = new ValidarCamposEndereco();
 		
 		//Criar  as listas com regras de negocio/
 		List<IStrategy> rnsSalvarCliente = new ArrayList<IStrategy>();
@@ -103,6 +104,7 @@ public class Fachada implements IFachada {
 		
 		List<IStrategy> rnsSalvarEndereco = new ArrayList<IStrategy>();
 		rnsSalvarEndereco.add(validarCadastroEnd);
+		rnsSalvarEndereco.add(validarCampoEnd);
 		List<IStrategy> rnsAlterarEndereco = new ArrayList<IStrategy>();
 		List<IStrategy> rnsConsultarEndereco = new ArrayList<IStrategy>();
 		List<IStrategy> rnsExcluirEndereco = new ArrayList<IStrategy>();

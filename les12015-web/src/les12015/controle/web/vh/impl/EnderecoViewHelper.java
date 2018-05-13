@@ -31,24 +31,17 @@ public class EnderecoViewHelper implements IViewHelper {
 		Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
 
 		if (operacao.equals("SALVAR")) {
-			if (numero != null && !numero.trim().equals(""))
-				endereco.setNumero(numero);
-			if (rua != null && !rua.trim().equals(""))
-				endereco.setRua(rua);
-			if (bairro != null && bairro.trim().equals(""))
-				endereco.setBairro(bairro);
-			if (cidade != null && cidade.trim().equals(""))
-				endereco.setCidade(cidade);
-			if (estado != null && estado.trim().equals(""))
-				endereco.setEstado(estado);
-			if (identificacao != null && identificacao.trim().equals(""))
-				endereco.setIdentificacao(identificacao);
-			if (cep != null && cep.trim().equals(""))
-				endereco.setCep(cep);
+			endereco.setNumero(numero);
+			endereco.setRua(rua);
+			endereco.setBairro(bairro);
+			endereco.setCidade(cidade);
+			endereco.setEstado(estado);
+			endereco.setCep(cep);
+			endereco.setIdentificacao(identificacao);
+			endereco.setPereferencial(true);
+			endereco.setIdCliente(cliente.getId());
 		}
-
-		endereco.setPereferencial(true);
-		endereco.setIdCliente(cliente.getId());
+		
 		return endereco;
 	}
 

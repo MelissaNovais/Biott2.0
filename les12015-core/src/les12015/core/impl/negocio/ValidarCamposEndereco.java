@@ -9,26 +9,25 @@ public class ValidarCamposEndereco implements IStrategy{
 	@Override
 	public String processar(EntidadeDominio entidade) {
 		Endereco end = (Endereco) entidade;
-		if (end.getBairro().equals("") || end.getBairro() == null)
-			return "O Bairro deve ser preenchido!";
+		if ( end.getBairro() == null || end.getBairro().equals(""))
+			return "Todos os campos de Endereço devem ser preenchidos!";
 
-		if (end.getCep().equals("") || end.getCep() == null)
-			return "O CEP deve ser preenchido!";
+		if (  end.getCep() == null  || end.getCep().equals(""))
+			return "Todos os campos de Endereço devem ser preenchidos!";
 
-		if (end.getCidade().equals("") || end.getCidade() == null)
-			return "A cidade deve ser preenchida!";
+		if (end.getCidade() == null || end.getCidade().equals(""))
+			return "Todos os campos de Endereço devem ser preenchidos!";
+		if (end.getEstado() == null || end.getEstado().equals(""))
+			return "Todos os campos de Endereço devem ser preenchidos!";
 
-		if (end.getEstado().equals("") || end.getEstado() == null)
-			return "O Estado deve ser preenchido!";
+		if (end.getNumero() == null || end.getNumero().equals(""))
+			return "Todos os campos de Endereço devem ser preenchidos!";
 
-		if (end.getNumero().equals("") || end.getNumero() == null)
-			return "O Número deve ser preenchido!";
-
-		if (end.getRua().equals("") || end.getRua() == null)
-			return "A rua deve ser preenchida!";
+		if (end.getRua() == null || end.getRua().equals(""))
+			return "Todos os campos de Endereço devem ser preenchidos!";
 		
 		
-		if (end.getIdentificacao().equals("") || end.getIdentificacao() == null)
+		if (end.getIdentificacao() == null || end.getIdentificacao().equals(""))
 			return "A Identificação deve ser preenchida";
 		
 		return null;

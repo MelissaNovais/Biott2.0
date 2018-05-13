@@ -20,16 +20,12 @@ public class EnderecoDAO extends AbstractJdbcDAO {
 	}
 	
 	public void salvar(EntidadeDominio entidade) {
-		if(connection == null){
-			openConnection();
-		}
-		PreparedStatement pst=null;
+		openConnection();
+		PreparedStatement pst = null;
 		Endereco end = (Endereco)entidade;
 		
 		try {
-			connection.setAutoCommit(false);
-			
-					
+			connection.setAutoCommit(false);	
 			String sql = null;
 			
 			sql = "INSERT INTO endereco (end_cli_id, end_cep, end_rua, end_numero, end_bairro, "
