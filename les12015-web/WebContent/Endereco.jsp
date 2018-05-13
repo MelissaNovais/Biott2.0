@@ -19,12 +19,12 @@
 					</div>
 					<div class="col-md-7">
 						<div class="form-group">
-							<input id="txtLogradouro" class="form-control" type="text" placeholder="Rua">
+							<input id="txtRua" name="txtRua" class="form-control" type="text" placeholder="Rua">
 						</div>
 					</div>
 					<div class="col-md-2">
 						<div class="form-group">
-							<input id="txtNumero" class="form-control" type="text" placeholder="Numero">
+							<input id="txtNumero" name="txtNumero" class="form-control" type="text" placeholder="Numero">
 						</div>
 					</div>	
 				</div>
@@ -33,19 +33,19 @@
 				
 					<div class="col-md-5">
 						<div class="form-group">
-							<input id="txtBairro" class="form-control" type="text" placeholder="Bairro">		
+							<input id="txtBairro" name="txtBairro" class="form-control" type="text" placeholder="Bairro">		
 							
 						</div>
 					</div>
 					
 					<div class="col-md-5">
 						<div class="form-group">
-							<input id="txtCidade" class="form-control" type="text" placeholder="Cidade">		
+							<input id="txtCidade" name="txtCidade" class="form-control" type="text" placeholder="Cidade">		
 						</div>
 					</div>	
 					<div class="col-md-2">
 						<div class="form-group">
-							<input id="txtEstado" class="form-control" type="text" placeholder="Estado">
+							<input id="txtEstado" name="txtEstado" class="form-control" type="text" placeholder="Estado">
 						</div>
 					</div>		
 				</div>
