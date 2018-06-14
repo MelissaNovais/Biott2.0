@@ -128,7 +128,8 @@ public class CartaoDAO extends AbstractJdbcDAO{
 				Cartao car = new Cartao();
 				car.setId(rs.getInt("car_id"));
 				car.setTitular(rs.getString("car_titular"));
-				car.setCodSeguranca(rs.getString("car_data_venc"));
+				car.setDataVenc(rs.getString("car_data_venc"));
+				car.setCodSeguranca(rs.getString("car_cod_seg"));
 				car.setNumero(rs.getString("car_numero"));
 				car.setPreferencial(rs.getBoolean("car_preferencial"));
 				

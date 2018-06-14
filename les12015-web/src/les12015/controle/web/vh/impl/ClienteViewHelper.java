@@ -124,9 +124,18 @@ public class ClienteViewHelper implements IViewHelper {
 		
 		if(resultado.getMsg() == null){
 			if(operacao.equals("SALVAR")){
+				//*******************************************************************************Mudar isso aqui
+				request.getSession().removeAttribute("cliente");
+				request.getSession().removeAttribute("resultado");
+				request.getSession().removeAttribute("cartoes");
+				request.getSession().removeAttribute("enderecos");
+				request.getSession().removeAttribute("cupons");
+				//
 				request.getSession().setAttribute("resultado", resultado);
 				request.getSession().setAttribute("cliente", resultado.getEntidades().get(0));
 				reqD = request.getRequestDispatcher("HomeCliente.jsp");  
+				
+				
 			}
 			if(operacao.equals("EXCLUIR")){
 				reqD = request.getRequestDispatcher("Login.jsp"); 

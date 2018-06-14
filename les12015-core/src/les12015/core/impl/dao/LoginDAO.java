@@ -179,13 +179,11 @@ public class LoginDAO extends AbstractJdbcDAO {
 					log.setTipoUsuario("admin");
 					log.setIdUsuario(idAdmin);
 				}
-				System.out.println(log.getEmail());
-				System.out.println(log.getSenha());
 				logins.add(log);
 			}
 			
 			
-			System.out.println("Array DAO " +  logins.size());
+			
 			return logins;
 		}  catch (SQLException e) {
 			e.printStackTrace();

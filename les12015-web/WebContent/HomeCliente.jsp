@@ -152,9 +152,11 @@
 	                                		<div class="col">
 	                                    		<p class="btn btn-info btn-block">30,00 R$</p>
 			                                </div>
-	        		                        <div class="col">
-	                		                    <a href="Carrinho.jsp" class="btn btn-success btn-block">Adicionar ao carrinho</a>
-	                        		        </div>
+			                                <form action="SalvarCarrinho" method="post">
+		        		                        <div class="col">
+		                		                    <button class="btn btn-success btn-block"  id="operacao" name="operacao" value="SALVAR">Adicionar ao carrinho</button>
+		                        		        </div>
+		                        		  	</form>
 	                            		</div>
 	                        		</div>
 	                    		</div>

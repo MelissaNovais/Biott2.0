@@ -64,9 +64,7 @@ public class CupomDAO extends AbstractJdbcDAO {
 
 	@Override
 	public void alterar(EntidadeDominio entidade) throws SQLException {
-		PreparedStatement pst = null;
-		Cupom cupom = (Cupom) entidade;
-		String sql = null;
+		
 
 	}
 
@@ -83,9 +81,9 @@ public class CupomDAO extends AbstractJdbcDAO {
 		if(cupom.getId() != null) {
 			sql = sql + "AND cup_id = " + cupom.getId() + "";
 		}
-		if (cupom.getCodigo() != null) {
+		if (cupom.getCodigo()!= null && !cupom.getCodigo().trim().equals(""))
 			sql = sql + " AND cup_codigo = '" + cupom.getCodigo() + "'";
-		}
+		
 		if(cupom.getCliente() != null) {
 			sql = sql + " AND cup_cli_id = " + cupom.getCliente().getId() + "";
 		}
@@ -100,7 +98,7 @@ public class CupomDAO extends AbstractJdbcDAO {
 				cup.setId(rs.getInt("cup_id"));
 				cup.setCodigo(rs.getString("cup_codigo"));
 				cup.setValor(rs.getDouble("cup_valor"));
-				cup.setId(rs.getInt("cup_cli_id"));
+				cup.getCliente().setId(rs.getInt("cup_cli_id"));
 				cup.setStatus(rs.getBoolean("cup_status"));
 				cupons.add(cup);
 			}

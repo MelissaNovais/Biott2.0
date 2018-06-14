@@ -16,7 +16,7 @@
 						<div class="col-md-9">
 			                <div class="form-group">
 			                    <div class="input-group">
-			                    	<input type="tel" class="form-control" name="txtNumero" id="txtNumero"
+			                    	<input type="tel" class="form-control" name="txtNumeroCar" id="txtNumeroCar"
 			                        	placeholder="Número de Cartão Válido"
 			             				autocomplete="cc-number" required autofocus />
 			                     	<span class="input-group-addon"><i class="fa fa-credit-card" id="mini-cartao"></i></span>

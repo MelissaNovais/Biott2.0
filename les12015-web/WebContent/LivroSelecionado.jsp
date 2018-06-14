@@ -85,7 +85,7 @@
 									<div class="row">
 										<div class="col-md-8">
 											<div class="form-group">
-												<input id = "txtCep" class="form-control list-inline-item" type="text" placeholder="CEP:">
+												<input id = "txtCepCalcular" name = "txtCepCalcular" class="form-control list-inline-item" type="text" placeholder="CEP:">
 											</div>
 										</div>
 										<div class="col-md-4">
@@ -160,6 +160,6 @@
 	
 
         <c:import url= "RodapeCliente.jsp"/>
-
+		<script src="./JS/apiCep.js"></script>
     </body>
 </html>

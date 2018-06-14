@@ -106,6 +106,11 @@
   
   <servlet-mapping>
     <servlet-name>Servlet</servlet-name>
+    <url-pattern>/SalvarCartaoCompra</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>Servlet</servlet-name>
     <url-pattern>/ConsultarCartao</url-pattern>
   </servlet-mapping>
   
@@ -124,6 +129,11 @@
     <url-pattern>/SalvarEndereco</url-pattern>
   </servlet-mapping>
   
+   <servlet-mapping>
+    <servlet-name>Servlet</servlet-name>
+    <url-pattern>/SalvarEnderecoCompra</url-pattern>
+  </servlet-mapping>
+  
   <servlet-mapping>
     <servlet-name>Servlet</servlet-name>
     <url-pattern>/ConsultarEndereco</url-pattern>
@@ -139,6 +149,44 @@
     <url-pattern>/AlterarEndereco</url-pattern>
   </servlet-mapping>
  
+   <servlet-mapping>
+    <servlet-name>Servlet</servlet-name>
+    <url-pattern>/SalvarCompra</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>Servlet</servlet-name>
+    <url-pattern>/ConsultarCompra</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>Servlet</servlet-name>
+    <url-pattern>/ExcluirCompra</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>Servlet</servlet-name>
+    <url-pattern>/AlterarCompra</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>Servlet</servlet-name>
+    <url-pattern>/SalvarCarrinho</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>Servlet</servlet-name>
+    <url-pattern>/AlterarCarrinho</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>Servlet</servlet-name>
+    <url-pattern>/ExcluirCarrinho</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
   
   
 </web-app>

@@ -4,7 +4,7 @@ public class Cupom extends EntidadeDominio{
 
 		private double valor;
 		private String codigo;
-		private Cliente cliente;
+		private Cliente cliente = new Cliente();
 		private boolean status;	//Ativo ou usado
 		
 		public double getValor() {

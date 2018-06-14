@@ -32,7 +32,10 @@
 	position: relative;
 	left: 42%;
 	top: -50px;
-	
+}
+
+#txtValorCupom{
+	width: 170px;;
 }
 
 #btn-final-compra{
@@ -40,4 +43,21 @@
 	width: 460px;
 	height: 45px;
 	font-size: 20px;
+}
+
+#btn-cad-cartao{
+	margin-left: 420px;
+	width: 200px;
+	height: 35px;
+	font-size: 18px;
+	margin-bottom: 30px;
+}
+
+#btn-cad-end{
+	
+	margin-left: 420px;
+	width: 200px;
+	height: 35px;
+	font-size: 18px;
+	margin-bottom: 30px;
 }

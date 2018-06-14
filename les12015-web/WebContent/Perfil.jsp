@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@page import="les12015.core.aplicacao.Resultado, les12015.dominio.*, java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -29,6 +30,9 @@
 			historico = (ArrayList<ItemCompra>) request.getAttribute("historico");
 			
 		%>
+		<c:if test="${empty cliente }">
+			<c:redirect url="Login.jsp"/>
+		</c:if>
 		
         <c:import url= "CabecalhoCliente.jsp"/>
 		
@@ -190,8 +194,7 @@
 							   		<thead>
 								    	<tr>
 								          	<th>Código do Cupom</th>
-								          	<th>&nbsp;&nbsp;Teste R$</th>	
-								          	<th>&nbsp;&nbsp;Valor R$</th>						        
+								         	<th>&nbsp;&nbsp;Valor R$</th>						        
 						        		</tr>
 								 	</thead>
 								    <tbody>
@@ -199,8 +202,7 @@
 								    		<tr>
 								    			<th>${cup.codigo}</th>
 									          	<td><fmt:formatNumber value = "${cup.valor}" type = "currency"/></td>
-									          	<td>${cup.valor}</td>
-								          	</tr>
+									        </tr>
 								      	 </c:forEach>
 								    </tbody>
 								</table>
@@ -387,7 +389,7 @@
 								    <tbody>
 								   		<c:forEach var= "end" items = "${enderecos }">
 									    	<tr>
-									          	<th><label id="txtIdentificacaoEnd"  disable class="form-control" type="text" > ${endereco.identificacao} </th>
+									          	<th><label id="txtIdentificacaoEnd"  disable class="form-control" type="text" > ${end.identificacao} </th>
 												<td class="text-center "><label class="radio-inline"><input type="radio" name="rdEndPreferencial">Preferencial </label></td>
 											    <td class="text-center "><label class="radio-inline"><input type="radio" name="rdEndCobranca">Cobrança</label></td>
 									          	<td><button class="btn btn-sm btn-danger" id="operacao" name="operacao" value="EXCLUIR">
@@ -419,7 +421,7 @@
 							   		<thead>
 								    	<tr>
 								          	<th>Numero </th>
-								          	<th>Titular </th>
+								          	<th>Titular </th>								        
 								          	<th class="text-center ">Selecionar como:</th>
 								          	<th></th>
 								          	
@@ -483,14 +485,15 @@
 	                    </div>
 	                    <div class="panel-body" >
 	                        Você deseja mesmo sair ?  
-	                        <a  href="#" class="label label-success"
+	                        <a  href="Login.jsp" class="label label-danger"
 	                            onclick="event.preventDefault();
 	                                                     document.getElementById('logout-form').submit();">
-	                            <span >   Não   </span>
+	                            <span >  Não  </span>
 	                        </a>    
-	                        <a href="Login.jsp" class="label label-danger"> <span >  Sim   </span></a>
+	                        <a href="Login.jsp" class="label label-success"> <span >  Sim   </span></a>
 	                    </div>
 	                    <form id="logout-form" action="#" method="POST" style="display: none;">
+	                    	
 	                    </form>
 	
 	           		</div>
@@ -505,9 +508,6 @@
 </html>
 
 <script type="text/javascript">
-<!--
-
-//-->
 
         $(document).ready(function()
       {

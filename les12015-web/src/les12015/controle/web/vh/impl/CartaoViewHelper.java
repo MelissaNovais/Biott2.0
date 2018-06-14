@@ -21,7 +21,7 @@ public class CartaoViewHelper implements IViewHelper{
 		String operacao = request.getParameter("operacao");
 		Cartao cartao = new Cartao();
 
-		String numero = request.getParameter("txtNumero");
+		String numero = request.getParameter("txtNumeroCar");
 		String codSeguranca = request.getParameter("txtCodSeguranca");
 		String titular = request.getParameter("txtTitular");
 		String dataVencimento = request.getParameter("txtExpiracao");
@@ -53,6 +53,7 @@ public class CartaoViewHelper implements IViewHelper{
 
 		RequestDispatcher reqD = null;
 		String operacao = request.getParameter("operacao");
+		String uri = request.getRequestURI();
 		
 		
 		if(resultado.getMsg() == null){
@@ -63,7 +64,10 @@ public class CartaoViewHelper implements IViewHelper{
 				cartoes = (List<EntidadeDominio>) request.getSession().getAttribute("cartoes");
 				cartoes.add((EntidadeDominio) resultado.getEntidades().get(resultado.getEntidades().size() - 1));
 				request.getSession().setAttribute("cartoes", cartoes);
-				reqD = request.getRequestDispatcher("Perfil.jsp");  
+				if(uri.equals("/les12015-web/SalvarCartaoCompra")) 
+					reqD = request.getRequestDispatcher("FinalizandoCompra.jsp");  
+				else
+					reqD = request.getRequestDispatcher("Perfil.jsp");  
 			}
 			if(operacao.equals("EXCLUIR")){
 				reqD = request.getRequestDispatcher(""); 

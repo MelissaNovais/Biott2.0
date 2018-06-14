@@ -20,7 +20,8 @@ public class EnderecoViewHelper implements IViewHelper {
 	public EntidadeDominio getEntidade(HttpServletRequest request) {
 		String operacao = request.getParameter("operacao");
 		Endereco endereco = new Endereco();
-
+		
+		
 		String rua = request.getParameter("txtRua");
 		String cep = request.getParameter("txtCep");
 		String numero = request.getParameter("txtNumero");
@@ -51,6 +52,8 @@ public class EnderecoViewHelper implements IViewHelper {
 
 		RequestDispatcher reqD = null;
 		String operacao = request.getParameter("operacao");
+		String uri = request.getRequestURI();
+		
 		if (resultado.getMsg() == null) {
 			if (operacao.equals("SALVAR")) {
 				resultado.setMsg("Endereço Cadastrado com Sucesso!!");
@@ -59,7 +62,11 @@ public class EnderecoViewHelper implements IViewHelper {
 				enderecos = (List<EntidadeDominio>) request.getSession().getAttribute("enderecos");
 				enderecos.add((EntidadeDominio) resultado.getEntidades().get(resultado.getEntidades().size() - 1));
 				request.getSession().setAttribute("enderecos", enderecos);
-				reqD = request.getRequestDispatcher("Perfil.jsp");
+				if(uri.equals("/les12015-web/EnderecoCompraCompra")) 
+					reqD = request.getRequestDispatcher("FinalizandoCompra.jsp");  
+				else
+					reqD = request.getRequestDispatcher("Perfil.jsp");  
+				
 			}
 			if (operacao.equals("EXCLUIR")) {
 				reqD = request.getRequestDispatcher("");

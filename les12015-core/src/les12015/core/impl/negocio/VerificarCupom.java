@@ -16,7 +16,10 @@ public class VerificarCupom implements IStrategy{
 		CupomDAO dao = new CupomDAO();
 		Cupom cupom = (Cupom) entidade;
   		List<EntidadeDominio> cupons = new ArrayList<EntidadeDominio>();
-		
+  		
+  		if (cupom.getCodigo() == null || cupom.getCodigo().trim().equals("")) {
+  			return "Esse Código de Cupom Não é Válido";
+  		}
 		try {
 			cupons =  dao.consultar(cupom);
 		} catch (SQLException e) {

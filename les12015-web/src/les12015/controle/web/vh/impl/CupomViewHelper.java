@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import les12015.controle.web.vh.IViewHelper;
 import les12015.core.aplicacao.Resultado;
+import les12015.dominio.Cliente;
 import les12015.dominio.Cupom;
 import les12015.dominio.EntidadeDominio;
 
@@ -19,11 +20,11 @@ public class CupomViewHelper implements IViewHelper{
 		String operacao = request.getParameter("operacao");
 		Cupom cupom = new Cupom(); 
 		
-		if(operacao.equals("CONSULTAR")|| operacao.equals("SALVAR") ) {
+		if(operacao.equals("CONSULTAR")) {
 			String idCupom = request.getParameter("txtIdCupom");
 			String codCupom = request.getParameter("txtCodCupom");
 			String valor = request.getParameter("txtValorCupom");
-			String idCliente = request.getParameter("txtIdCliente");
+			Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
 			
 			if (idCupom != null && !idCupom.trim().equals("")) {
                 cupom.setId(Integer.parseInt(idCupom));
@@ -31,20 +32,23 @@ public class CupomViewHelper implements IViewHelper{
 			if (valor != null && !valor.trim().equals("")) {
                cupom.setValor(Double.parseDouble(valor));
             }
-			if (idCliente != null && !idCliente.trim().equals("")) {
-                cupom.getCliente().setId(Integer.parseInt(idCliente));
+			if (cliente != null) {
+                cupom.getCliente().setId(cliente.getId());
             }
-			if (codCupom != null && !codCupom.trim().equals("")) {
-                cupom.setCodigo((codCupom));
+			if (codCupom == null || !codCupom.trim().equals("")) {
+                cupom.setCodigo((null));
             }
+			cupom.setCodigo(codCupom);
 		}
 		
 		if (operacao.equals("EXCLUIR")) {
 			
 		}
-		if (operacao.equals("EXCLUIR")) {
+		if (operacao.equals("SALVAR")) {
 			
 		}
+		request.getSession().removeAttribute("cupom");
+		request.getSession().removeAttribute("resultado");
 		return cupom;
 	}
 
@@ -52,7 +56,6 @@ public class CupomViewHelper implements IViewHelper{
 			throws IOException, ServletException {
 		
 		RequestDispatcher reqD = null;
-		String uri = request.getRequestURI();
 		String operacao = request.getParameter("operacao");
 		
 		
@@ -64,8 +67,11 @@ public class CupomViewHelper implements IViewHelper{
 				
 			}
 			else if (operacao.equals("CONSULTAR")) {
-				request.getSession().setAttribute("cupons", resultado.getEntidades()); 	
+				request.getSession().setAttribute("cupom", resultado.getEntidades().get(0)); 	
+				reqD = request.getRequestDispatcher("FinalizandoCompra.jsp");  	
+				
 			}
+			
 		}
 		else if (resultado.getMsg() != null){
 			if(operacao.equals("SALVAR")){
@@ -73,19 +79,14 @@ public class CupomViewHelper implements IViewHelper{
 			}
 			else if(operacao.equals("CONSULTAR")){
 				request.getSession().setAttribute("resultado", resultado);	
-				
+				reqD = request.getRequestDispatcher("FinalizandoCompra.jsp");  	
 			}
 		}
 		/**
 		 * Tem diferentes paginas q pedem consultar clientes 
 		 * 	dependendo de quem pediu (uri) ... ele devolve
 		 */
-		if (uri.equals("/les12015-web/ConsultarCupomCliente")) {
-			reqD = request.getRequestDispatcher("Perfil.jsp");  	
-		}
-		else if (uri.equals("/les12015-web/ConsultarCupomCompra")) {
-			reqD = request.getRequestDispatcher("FinalizandoCompra.jsp");  	
-		}
+		
 		reqD.forward(request,response); 
 		
 	}

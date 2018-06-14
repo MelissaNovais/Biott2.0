@@ -10,6 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.http.fileupload.FileItemStream.ItemSkippedException;
+
 import les12015.controle.web.vh.IViewHelper;
 import les12015.core.aplicacao.Resultado;
 import les12015.core.impl.dao.AdminDAO;
@@ -18,9 +20,12 @@ import les12015.core.impl.dao.ClienteDAO;
 import les12015.core.impl.dao.CupomDAO;
 import les12015.core.impl.dao.EnderecoDAO;
 import les12015.dominio.Administrador;
+import les12015.dominio.Autor;
 import les12015.dominio.Cliente;
 import les12015.dominio.Cupom;
 import les12015.dominio.EntidadeDominio;
+import les12015.dominio.ItemCompra;
+import les12015.dominio.Livro;
 import les12015.dominio.Login;
 
 public class LoginViewHelper implements IViewHelper{
@@ -71,6 +76,15 @@ public class LoginViewHelper implements IViewHelper{
 					reqD = request.getRequestDispatcher("Login.jsp");  
 				}
 				else {
+					
+					
+					
+					//Isso aqui eh gambiarra .... Procurar o jeito certo dps
+					request.getSession().removeAttribute("cliente");
+					request.getSession().removeAttribute("resultado");
+					request.getSession().removeAttribute("cartoes");
+					request.getSession().removeAttribute("enderecos");
+					request.getSession().removeAttribute("cupons");
 					Login log = (Login) resultado.getEntidades().get(0);
 					if(log.getTipoUsuario().equals("cliente")) {
 						
@@ -92,6 +106,8 @@ public class LoginViewHelper implements IViewHelper{
 						
 						
 						request.getSession().setAttribute("cliente", cliente);
+						
+						
 						try {
 							lista = carDAO.consultar(cliente);
 						} catch (SQLException e) {
@@ -110,12 +126,15 @@ public class LoginViewHelper implements IViewHelper{
 							e.printStackTrace();
 						}
 						try {
+							cup.getCliente().setId(cliente.getId());
 							lista = cupDAO.consultar(cup);
 						} catch (SQLException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						request.getSession().setAttribute("cupons", lista);
+						ArrayList<ItemCompra> carrinho = new ArrayList<ItemCompra>(); 
+						request.getSession().setAttribute("carrinho", carrinho);
 						
 						reqD = request.getRequestDispatcher("HomeCliente.jsp");  
 					}

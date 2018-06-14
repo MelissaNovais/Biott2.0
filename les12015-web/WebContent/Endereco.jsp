@@ -50,7 +50,6 @@
 					</div>		
 				</div>
 				<div class="row">
-				
 					<div class="col-md-12">
 						<div class="form-group">
 							<input id="txtIdentificacaoEnd" name="txtIdentificacaoEnd" class="form-control" type="text" 
@@ -58,8 +57,18 @@
 						</div>
 					</div>
 				</div>
-				
-				
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-check">
+					       	<label class="checkbox-inline"><input type="checkbox" name= "endPreferencialCB" value="">Marcar Como Preferencial</label>
+						</div> 
+					</div>
+					<div class="col-md-4">
+						<div class="form-check">
+					       	<label class="checkbox-inline"><input type="checkbox" name= "endCobrancaCB" value="">Endereço de Cobrança</label>
+						</div> 
+					</div>
+				</div>	
 			</div>	
 		</div>
 		<script src="./JS/apiCep.js"></script>

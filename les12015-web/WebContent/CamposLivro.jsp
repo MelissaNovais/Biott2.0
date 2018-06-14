@@ -17,7 +17,6 @@
 						<div class="form-group">
 							<select id= "slc-autor" class="form-control">
 								<option value="" disabled selected>Autores</option>
-								
 								<!-- Implementar JSP que inclui autores -->
 								<option  value="1">J. K. Rolling </option> 
 								<option  value="2">Stephen king</option> 

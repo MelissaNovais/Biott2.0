@@ -1,19 +1,18 @@
 package les12015.dominio;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Compra extends EntidadeDominio{
 
-	private Cliente cliente;
-	private Endereco end;
-	private Cartao cartao;
-	private Cupom cupom;
+	private Cliente cliente = new Cliente();
+	private Endereco end = new Endereco();
+	private Cartao cartao = new Cartao();
+	private Cupom cupom = new Cupom();
 	private double valorFrete;
 	private double subTotal;
 	private double valorTotal;
-	private Date data;
+	private String data;
 	private List<ItemCompra> carrinho = new ArrayList<ItemCompra>(); // Lista da classe item compra
 	
 	public Cliente getCliente() {
@@ -41,12 +40,8 @@ public class Compra extends EntidadeDominio{
 	public void setValorTotal(double valorTotal) {
 		this.valorTotal = valorTotal;
 	}
-	public Date getData() {
-		return data;
-	}
-	public void setData(Date data) {
-		this.data = data;
-	}
+	
+	
 	public Cupom getCupom() {
 		return cupom;
 	}
@@ -70,6 +65,12 @@ public class Compra extends EntidadeDominio{
 	}
 	public void setCarrinho(List<ItemCompra> carrinho) {
 		this.carrinho = carrinho;
+	}
+	public String getData() {
+		return data;
+	}
+	public void setData(String data) {
+		this.data = data;
 	}
 	
 	

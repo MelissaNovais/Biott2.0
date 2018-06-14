@@ -16,14 +16,17 @@ import les12015.controle.web.command.impl.ExcluirCommand;
 import les12015.controle.web.command.impl.SalvarCommand;
 import les12015.controle.web.command.impl.VisualizarCommand;
 import les12015.controle.web.vh.IViewHelper;
+import les12015.controle.web.vh.impl.CarrinhoViewHelper;
 import les12015.controle.web.vh.impl.CartaoViewHelper;
 import les12015.controle.web.vh.impl.ClienteViewHelper;
+import les12015.controle.web.vh.impl.CompraViewHelper;
 import les12015.controle.web.vh.impl.CupomViewHelper;
 import les12015.controle.web.vh.impl.EnderecoViewHelper;
 import les12015.controle.web.vh.impl.LivroViewHelper;
 import les12015.controle.web.vh.impl.LoginViewHelper;
 import les12015.core.aplicacao.Resultado;
 import les12015.dominio.EntidadeDominio;
+import sun.util.resources.cldr.rn.CalendarData_rn_BI;
 
 /**
  * Servlet implementation class Servlet
@@ -40,6 +43,7 @@ public class Servlet extends HttpServlet {
      * Default constructor. 
      */
     public Servlet() {
+    	System.out.println("Construtor Servlet 2.0");
     	
     	/* Utilizando o command para chamar a fachada e indexando cada command 
     	 * pela operação garantimos que esta servelt atenderá qualquer operação */
@@ -72,11 +76,13 @@ public class Servlet extends HttpServlet {
     	vhs.put("/les12015-web/ConsultarCliente", new ClienteViewHelper());
     	
     	vhs.put("/les12015-web/SalvarCartao", new CartaoViewHelper());
+    	vhs.put("/les12015-web/SalvarCartaoCompra", new CartaoViewHelper());
     	vhs.put("/les12015-web/ExcluirCartao", new CartaoViewHelper());
     	vhs.put("/les12015-web/AlterarCartao", new CartaoViewHelper());
     	vhs.put("/les12015-web/ConsultarCartao", new CartaoViewHelper());
     	
     	vhs.put("/les12015-web/SalvarEndereco", new EnderecoViewHelper());
+    	vhs.put("/les12015-web/SalvarEnderecoCompra", new EnderecoViewHelper());
     	vhs.put("/les12015-web/ExcluirEndereco", new EnderecoViewHelper());
     	vhs.put("/les12015-web/AlterarEndereco", new EnderecoViewHelper());
     	vhs.put("/les12015-web/ConsultarEndereco", new EnderecoViewHelper());
@@ -90,6 +96,17 @@ public class Servlet extends HttpServlet {
     	vhs.put("/les12015-web/ConsultarLogin", new LoginViewHelper());
     	vhs.put("/les12015-web/AlterarLogin", new LoginViewHelper());
     	vhs.put("/les12015-web/ExcluirLogin", new LoginViewHelper());
+    	
+    	vhs.put("/les12015-web/SalvarCompra", new CompraViewHelper());
+    	vhs.put("/les12015-web/ExcluirCompra", new CompraViewHelper());
+    	vhs.put("/les12015-web/AlterarCompra", new CompraViewHelper());
+    	vhs.put("/les12015-web/ConsultarCompra", new CompraViewHelper());
+    	
+    	vhs.put("/les12015-web/SalvarCarrinho", new CarrinhoViewHelper());
+    	vhs.put("/les12015-web/AlterarCarrinho", new CarrinhoViewHelper());
+    	vhs.put("/les12015-web/ExcluirCarrinho", new CarrinhoViewHelper());
+    			vhs.put("/les12015-web/Teste", new CarrinhoViewHelper());
+    	
     	
     	
     }
@@ -135,6 +152,7 @@ public class Servlet extends HttpServlet {
 		EntidadeDominio entidade =  vh.getEntidade(request);
 
 		//Obtêm o command para executar a respectiva operação
+		
 		ICommand command = commands.get(operacao);
 		
 		
